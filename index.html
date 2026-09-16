@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Year one: Impact Report — The Marblehead Independent</title>
+<meta name="description" content="The Marblehead Independent's first-year impact report, Sept. 15, 2025 to Sept. 15, 2026: 770 stories, 14 free civic tools, a newsroom of 13, and where every dollar came from and went.">
+<link rel="canonical" href="https://www.marbleheadindependent.com/year-one/">
+<link rel="icon" href="photos/linocut.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Marblehead Independent">
+<meta property="og:title" content="Year one: Impact Report — The Marblehead Independent">
+<meta property="og:description" content="770 stories, 14 free civic tools, a newsroom of 13, and where every dollar came from and went.">
+<meta property="og:url" content="https://www.marbleheadindependent.com/year-one/">
+<meta property="og:image" content="https://yearone.marbleheadindependent.com/photos/og-year-one.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@mhdindy">
+<meta name="twitter:title" content="Year one: Impact Report — The Marblehead Independent">
+<meta name="twitter:image" content="https://yearone.marbleheadindependent.com/photos/og-year-one.jpg">
+
+<style>
+/* Brand Guidelines: Georgia only; pure white; Independent Red #C2261D; Harbor Black #1E1F21 */
+:root{
+  --ink:#1E1F21; --red:#C2261D; --blue:#375E97; --canvas:#fff;
+  --rule:#CFCFCE; --soft:#E4E4E3; --muted:#64656A;
+  --serif:Georgia,"Times New Roman",serif;
+  --page:48em;      /* the print page's live area */
+  --text:36em;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+p{margin:0 0 1.1em}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:8px;top:8px;background:#fff;padding:.6em 1em;z-index:100}
+
+/* ---------- chrome ---------- */
+.topbar{border-bottom:1px solid var(--soft);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.topbar div{max-width:var(--page);margin:0 auto;padding:.8em 1.4em;display:flex;gap:1.6em}
+.topbar a{color:var(--muted);text-decoration:none}
+.topbar a:hover{color:var(--red)}
+.sectionnav{background:#fff;border-bottom:1px solid var(--soft)}
+.sectionnav ul{max-width:60em;margin:0 auto;padding:.55em 1.2em;list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.5em 1.1em;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;scrollbar-width:none}
+.sectionnav ul::-webkit-scrollbar{display:none}
+.sectionnav a{color:var(--muted);text-decoration:none;white-space:nowrap;padding-bottom:.2em;border-bottom:2px solid transparent}
+.sectionnav a:hover{color:var(--red);border-bottom-color:var(--red)}
+
+/* ---------- pages ---------- */
+.page{max-width:var(--page);margin:0 auto;padding:3.4em 1.4em 2.6em;scroll-margin-top:1em}
+.page + .page{border-top:1px solid var(--soft)}
+.kicker{font-size:.72rem;font-weight:bold;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin:0 0 .5em}
+h2{font-size:clamp(1.6rem,3.6vw,2.15rem);line-height:1.15;margin:0 0 .5em;padding-bottom:.35em;border-bottom:1px solid var(--rule);letter-spacing:-.008em}
+.deck{font-style:italic;font-size:1.12rem;line-height:1.5;margin:0 0 1.5em}
+h3{font-size:1.08rem;margin:1.5em 0 .35em}
+.twocol{display:grid;grid-template-columns:1fr 1fr;column-gap:2.2em}
+.twocol h3:first-child{margin-top:0}
+.dropcap::first-letter{float:left;font-size:3.6em;line-height:.8;font-weight:bold;color:var(--red);padding:.08em .1em 0 0}
+
+figure{margin:0}
+figure.wide{margin:0 0 1.6em}
+figcaption{font-size:.8rem;line-height:1.45;color:var(--muted);margin-top:.5em}
+.credit{font-variant:small-caps;letter-spacing:.03em;white-space:nowrap}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2em;margin:0 0 1.6em}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4em 1.6em;margin:0 0 1.6em}
+.grid2 img,.grid3 img{width:100%}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0 1.4em;margin:1.6em 0 1.8em}
+.stat{padding-right:1.2em;border-right:1px solid var(--soft)}
+.stat:last-child{border-right:0;padding-right:0}
+.stat .n{display:block;font-size:2.6rem;line-height:1;font-weight:bold;color:var(--red);letter-spacing:-.02em}
+.stat .bar{display:block;height:2px;background:var(--red);margin:.35em 0 .55em}
+.stat .c{display:block;font-size:.78rem;line-height:1.4;color:var(--muted)}
+
+.box{border-left:3px solid var(--red);border-top:1px solid var(--soft);border-right:1px solid var(--soft);border-bottom:1px solid var(--soft);padding:1.1em 1.3em;margin:1.8em 0 0}
+.box h3{margin-top:0;font-size:1.02rem}
+.box p:last-child{margin-bottom:0}
+.pull{font-style:italic;font-size:1.12rem;text-align:center;max-width:30em;margin:2em auto 0;line-height:1.5}
+
+table{width:100%;border-collapse:collapse;margin:1.2em 0 1.6em;font-size:.95rem}
+th{text-align:left;font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;color:var(--red);border-bottom:1px solid var(--ink);padding:.5em .3em}
+td{padding:.55em .3em;border-bottom:1px solid var(--soft);vertical-align:top}
+.num{text-align:right;white-space:nowrap}
+tr.total td{font-weight:bold;border-bottom:2px solid var(--ink)}
+.fn{font-size:.82rem;line-height:1.5;color:var(--ink);margin:0 0 .8em}
+.small{font-size:.86rem;line-height:1.5}
+
+/* stories, p7 */
+.story{display:grid;grid-template-columns:11em 1fr;gap:1.3em;padding:1.1em 0;border-top:1px solid var(--soft)}
+.story.lead{grid-template-columns:19em 1fr;border-top:0;border-bottom:2px solid var(--red);padding-top:0}
+.story h3{margin:0 0 .35em;font-size:1.05rem}
+.story.lead h3{font-size:1.35rem}
+.story p{margin:0 0 .45em;font-size:.95rem}
+.story .meta{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* people, p12–13 */
+.people{display:grid;grid-template-columns:repeat(5,1fr);gap:1.4em 1.2em;margin:1.6em 0 0;text-align:center}
+.people.three{grid-template-columns:repeat(3,1fr);max-width:36em;margin-left:auto;margin-right:auto}
+.people img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.people .nm{font-weight:bold;margin:.6em 0 0;font-size:.95rem;line-height:1.25}
+.people .role{color:var(--red);font-size:.8rem;line-height:1.3;margin:.1em 0 .25em}
+.people .bio{font-size:.8rem;line-height:1.4;color:var(--ink);margin:0}
+
+/* founders, p17 */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4em 2em;border-top:2px solid var(--red);padding-top:1em;margin-top:1.4em}
+.tiers h4,.tier100 h4{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:1em 0 .35em;padding-bottom:.3em;border-bottom:1px solid var(--soft)}
+.tiers h4:first-child{margin-top:0}
+.tiers ul,.tier100 ul{list-style:none;margin:0;padding:0;font-size:.93rem;line-height:1.55}
+.tier100{margin-top:1.4em}
+.tier100 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0 2em}
+
+/* sponsors, p18 */
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6em 1.4em;align-items:end;text-align:center;margin:1em 0 2em}
+.logos.premier{grid-template-columns:repeat(2,1fr);max-width:34em;margin-left:auto;margin-right:auto}
+.logos figure{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.logos img{max-height:7em;width:auto;max-width:100%;margin:0 auto;object-fit:contain}
+.logos.premier img{max-height:5.2em}
+.logos figcaption{font-size:.84rem;color:var(--ink);margin-top:.7em}
+.subkicker{font-size:.66rem;font-weight:bold;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin:1.8em 0 .5em;padding-bottom:.4em;border-bottom:1px solid var(--soft)}
+
+/* cover, contents, back page */
+.cover{text-align:center;padding-top:3em}
+.cover .kicker{letter-spacing:.24em;font-size:.8rem;margin-bottom:.4em}
+.cover h1{font-size:clamp(2.6rem,7vw,3.9rem);line-height:1.05;margin:0 0 .5em;letter-spacing:-.015em}
+.cover .lino{width:min(11em,46vw);margin:0 auto .6em}
+.cover .plate{line-height:1.05;margin:0 0 1.6em}
+.cover .plate .a{display:block;font-size:clamp(1.7rem,4.6vw,2.4rem);font-weight:bold}
+.cover .plate .b{display:block;font-size:clamp(1.9rem,5.4vw,2.8rem);font-weight:bold;letter-spacing:.06em;color:var(--red)}
+.coverphoto{margin:0;padding:0}
+.coverphoto img{width:100%;max-width:60em;margin:0 auto}
+
+.contents{padding-top:2.6em;text-align:center}
+.contents .kicker{margin-bottom:1.4em}
+.contents h2{border:0;padding:0;font-size:2rem;margin-bottom:.6em}
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:0 3em;margin:0 auto 2em;max-width:38em;text-align:left}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li{display:flex;justify-content:space-between;gap:1em;border-bottom:1px solid var(--soft);padding:.45em 0;font-size:1rem}
+.toc li a{color:var(--ink);text-decoration:none;flex:1}
+.toc li a:hover{color:var(--red)}
+.toc li .pg{color:var(--muted);font-size:.85rem}
+.toc .h{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:1.6em 0 .2em}
+.colophon{font-size:.9rem;line-height:1.55;max-width:34em;margin-left:auto;margin-right:auto}
+.address{font-size:.86rem;line-height:1.5;color:var(--ink);margin-top:1.4em}
+.contents .share{justify-content:center}
+
+.signup{display:grid;grid-template-columns:7em 1fr;gap:1.4em;align-items:center;border-top:1px solid var(--soft);padding-top:1.4em;margin-top:1.6em}
+.signup img{width:7em}
+.signup h3{margin:0 0 .3em;font-size:1.05rem}
+.signup p{margin:0;font-size:.92rem}
+
+.help .kicker{margin-top:.8em}
+.help h2{border:0;padding:0;font-size:clamp(1.9rem,4.4vw,2.5rem);max-width:15em}
+.help .stats{border-top:2px solid var(--red);padding-top:1em}
+.help .stat .n{font-size:1.6rem}
+.help .give{display:grid;grid-template-columns:7em 1fr;gap:1.4em;align-items:center;margin:1.4em 0 0}
+.help .give img{width:7em}
+.help .give .url{font-size:1.5rem;font-weight:bold;color:var(--red);margin:0 0 .3em;word-break:break-all}
+.help .give p{margin:0;font-size:.9rem;color:var(--muted)}
+.plate2{display:flex;justify-content:space-between;align-items:center;gap:1.4em;border-top:1px solid var(--soft);margin-top:2em;padding-top:1.4em}
+.plate2 .np{display:flex;align-items:center;gap:.7em}
+.plate2 .np img{width:2.4em}
+.plate2 .np .a{display:block;font-weight:bold;font-size:1.25rem;line-height:1.05}
+.plate2 .np .b{display:block;font-weight:bold;font-size:1.25rem;line-height:1.05;color:var(--red);letter-spacing:.08em}
+.plate2 .tag{font-style:italic;font-size:.9rem;text-align:right;color:var(--ink)}
+
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:.6em;margin:1.4em 0 0;font-size:.74rem}
+.share span{letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.share a,.share button{font-family:var(--serif);font-size:.74rem;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:2px;padding:.36em .8em;text-decoration:none;cursor:pointer}
+.share a:hover,.share button:hover{border-color:var(--red);color:var(--red)}
+
+footer{border-top:1px solid var(--soft);margin-top:1em;padding:1.8em 0 3em;font-size:.82rem;color:var(--muted)}
+footer div{max-width:var(--page);margin:0 auto;padding:0 1.4em}
+footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
+
+@media (max-width:760px){
+  body{font-size:17px}
+  .sectionnav ul{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto}
+  .twocol,.grid2,.tier100 .cols{grid-template-columns:1fr}
+  .tiers{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr;gap:1.2em}
+  .stat{border-right:0;padding-right:0;border-bottom:1px solid var(--soft);padding-bottom:1em}
+  .stat:last-child{border-bottom:0}
+  .people{grid-template-columns:repeat(2,1fr)}
+  .people.three{grid-template-columns:repeat(3,1fr)}
+  .story,.story.lead{grid-template-columns:1fr}
+  .story img{max-width:22em}
+  .logos{grid-template-columns:repeat(2,1fr)}
+  .toc{grid-template-columns:1fr}
+  .plate2{flex-direction:column;align-items:flex-start}
+  .plate2 .tag{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#editor">Skip to the report</a>
+
+<nav class="topbar" aria-label="Site">
+  <div>
+    <a href="https://www.marbleheadindependent.com">MHD Indy home</a>
+    <a href="https://www.marbleheadindependent.com/ways-to-support">Ways to support</a>
+  </div>
+</nav>
+
+<nav class="sectionnav" aria-label="Sections">
+  <ul>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#editor">Editor</a></li>
+    <li><a href="#override">Override</a></li>
+    <li><a href="#tools">Civic tools</a></li>
+    <li><a href="#district">6th District</a></li>
+    <li><a href="#agenda">Off the agenda</a></li>
+    <li><a href="#allyear">All year</a></li>
+    <li><a href="#pictures">Pictures</a></li>
+    <li><a href="#summer">Summer</a></li>
+    <li><a href="#winter">Winter</a></li>
+    <li><a href="#newsroom">Newsroom</a></li>
+    <li><a href="#columnists">Columnists</a></li>
+    <li><a href="#record">Outside record</a></li>
+    <li><a href="#readers">Who reads it</a></li>
+    <li><a href="#transparency">Transparency</a></li>
+    <li><a href="#founders">Founders</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#help">How to help</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ================================================== page 1 -->
+<header class="page cover" id="top">
+  <p class="kicker">Year one</p>
+  <h1>Impact Report</h1>
+  <img class="lino" src="photos/linocut.png" width="360" height="617" alt="Linocut of the Old Town House, the nameplate of The Marblehead Independent.">
+  <p class="plate"><span class="a">The Marblehead</span><span class="b">INDEPENDENT</span></p>
+</header>
+<figure class="coverphoto">
+  <img src="photos/cover-spirit-of-76.jpg" width="1100" height="634" alt="Children recreate Archibald Willard's 'The Spirit of '76' inside a handmade frame during the Fourth of July horribles parade.">
+</figure>
+
+<!-- ================================================== page 2 -->
+<section class="page contents" id="contents">
+  <p class="kicker">Impact Report 2025–26</p>
+  <h2>Contents</h2>
+  <div class="toc">
+    <div>
+      <ol>
+        <li><a href="#editor">from the editor</a><span class="pg">3</span></li>
+        <li><a href="#override">the override year</a><span class="pg">4</span></li>
+        <li><a href="#tools">civic tools</a><span class="pg">5</span></li>
+        <li><a href="#district">the 6th district</a><span class="pg">6</span></li>
+        <li><a href="#agenda">off the agenda</a><span class="pg">7</span></li>
+        <li><a href="#allyear">the town, all year</a><span class="pg">8</span></li>
+        <li><a href="#pictures">the year in pictures</a><span class="pg">9</span></li>
+        <li><a href="#summer">high summer</a><span class="pg">10</span></li>
+        <li><a href="#winter">december to february</a><span class="pg">11</span></li>
+      </ol>
+    </div>
+    <div>
+      <p class="h">The Independent</p>
+      <ol>
+        <li><a href="#newsroom">the newsroom</a><span class="pg">12</span></li>
+        <li><a href="#columnists">the columnists</a><span class="pg">13</span></li>
+        <li><a href="#record">the outside record</a><span class="pg">14</span></li>
+        <li><a href="#readers">who reads it</a><span class="pg">15</span></li>
+        <li><a href="#transparency">transparency</a><span class="pg">16</span></li>
+        <li><a href="#founders">acknowledgements</a><span class="pg">17</span></li>
+        <li><a href="#sponsors">our sponsors</a><span class="pg">18</span></li>
+        <li><a href="#help">how to help</a><span class="pg">19</span></li>
+      </ol>
+    </div>
+  </div>
+  <p class="colophon">Katie Ring photographed the cover, in which children recreate Archibald Willard’s “The Spirit of ’76,” the painting that hangs in Abbot Hall, during the Fourth of July horribles parade. This report covers the Independent’s first 12 months, from the launch on Sept. 15, 2025, to Sept. 15, 2026. The nameplate is a linocut by Nick Kent. The photographs throughout are the work of Ring, Paula Muller and Steve Rood, contributors this paper pays by assignment.</p>
+  <p class="address">The Marblehead Independent<br>74 Atlantic Ave., Suite 306<br>Marblehead, Massachusetts 01945<br>marbleheadindependent.com</p>
+  <div class="share">
+    <span>Share</span>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.marbleheadindependent.com%2Fyear-one%2F" rel="noopener">Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.marbleheadindependent.com%2Fyear-one%2F&amp;text=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent" rel="noopener">X</a>
+    <a href="https://bsky.app/intent/compose?text=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent%20https%3A%2F%2Fwww.marbleheadindependent.com%2Fyear-one%2F" rel="noopener">Bluesky</a>
+    <a href="mailto:?subject=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent&amp;body=https%3A%2F%2Fwww.marbleheadindependent.com%2Fyear-one%2F">Email</a>
+    <button type="button" id="copylink" data-url="https://www.marbleheadindependent.com/year-one/">Copy link</button>
+  </div>
+</section>
+
+<!-- ================================================== page 3 -->
+<section class="page" id="editor">
+  <p class="kicker">From the editor</p>
+  <h2>The whole story, dry parts included</h2>
+  <figure class="wide">
+    <img src="photos/p03-town-meeting-warrant.jpg" width="1304" height="352" alt="A voter reads the warrant during Town Meeting.">
+    <figcaption>A voter reads the warrant at Town Meeting on May 4. <span class="credit">Independent photo / Katie Ring</span></figcaption>
+  </figure>
+  <p class="dropcap">A year ago this newsroom was one reporter in a Humphrey Street basement, a linocut of the Old Town House and a promise to cover Marblehead as fully and fairly as one person could. I started the Independent because I love this town and love writing about it. I have covered Marblehead in some capacity since 2012, and after 14 years, I did not want to stop.</p>
+  <p>I also believed Marblehead deserved the whole story, dry parts included, so that a town that governs itself could decide with the facts in hand. This town takes that seriously. In June, 47.5 percent of voters turned out for the town election, a record in books that go back to 2006. People who show up like that deserve to know what they are voting on.</p>
+  <p>I have watched local papers across Massachusetts get cut to the bone and learned that a small paper trying to be everywhere ends up being nowhere. So in our first year, we focused on what we could do well: civics, schools, community life, government and culture. We will add more as we grow, and we would rather grow carefully than spread thin. It is why we are at the Christmas Walk and the fireworks as well as Town Meeting. A town is more than its meetings. It is also the summer an 18-year-old Sylvia Plath spent babysitting here, read back aloud to the three people she wrote about as children. It is Niko Kuzmina, who worked a grocery counter for 23 years and left town wearing a police polo with his own name on it.</p>
+  <p>Here is what we tried. We published 770 stories and sent nearly 50 weekly newsletters. We built 14 free online tools that let anyone sort a town payroll of 1,185 employees and $65.24 million, read 44 years of tax votes or follow Town Meeting article by article. When the override vote came, we did the math before the vote, not after. The full history of Marblehead’s 114 Proposition 2&frac12; questions went online Jan. 28.</p>
+  <p>Others noticed. The Wall Street Journal credited our interview with a resident whose Town Meeting question went national, and MASSterList and Axios cited our 6th District coverage.</p>
+  <p>We did not do it alone. The Independent grew from one person to 13, and about one story in four now carries someone else’s byline. They are an incredibly talented and passionate group, and they do this work because they care about this town. Among them are decades of North Shore reporting, editing and news photography, and you will meet them on <a href="#newsroom">page 12</a>.</p>
+  <p>Thank you for reading, for talking to us and for the tips, letters and corrections that made the reporting better. Covering Marblehead has been the very best job I have ever had. I get to spend my days chronicling the town I love, with people who care how it is run. I would not trade that for anything.</p>
+  <p>Cheers,</p>
+  <p><strong>Will Dowd</strong><br><em>Founder and editor</em></p>
+</section>
+
+<!-- ================================================== page 4 -->
+<section class="page" id="override">
+  <p class="kicker">The override year</p>
+  <h2>Holding the town to account</h2>
+  <p class="deck">Voters approved a $17.3 million override in June. We published the numbers before the vote, not after.</p>
+  <figure class="wide">
+    <img src="photos/p04-state-of-the-town.jpg" width="980" height="351" alt="Select Board members and the town administrator listen during the State of the Town in Abbot Hall.">
+    <figcaption>Select Board members Dan Fox and Alexa Singer, now off the board, and Town Administrator Thatcher Kezer listen during the State of the Town in Abbot Hall. <span class="credit">Independent photo / Katie Ring</span></figcaption>
+  </figure>
+  <div class="twocol">
+    <div>
+      <h3>It started with the line item</h3>
+      <p>In February, we analyzed the fastest-growing cost in the town budget. A 15 percent increase in health insurance would absorb nearly all of the $2.2 million the levy grows by in a year, which is to say that everything else would have to come from somewhere. The series traced 21 years of that spending. In March, we mapped the fiscal 2027 cuts: 18 positions eliminated, and the shape of an override appeared.</p>
+    </div>
+    <div>
+      <h3>What we published before the vote</h3>
+      <p>We read every Proposition 2&frac12; question Marblehead has been asked since 1982 and published them as an interactive in January, four months before the vote. The pattern in 44 years of results is on <a href="#tools">the next page</a>. What mattered is that a reader could see how unusual this proposal was while there was still time to think about it.</p>
+      <p>Town Meeting opened on May 4 and we tracked all 40 warrant articles live as they were taken up, through a session that closed at 10:42 p.m. — the first anyone covering Marblehead since 2012 had seen wrap in a single night.</p>
+    </div>
+  </div>
+  <div class="box">
+    <h3>What happened</h3>
+    <p>Our own survey in late March found 61 percent of 259 respondents backing an override — a snapshot, we said, not a poll. It landed close: in June, on a record 47.5 percent turnout, voters approved a $17.3 million tiered override, 54.3 percent yes on the $15 million operating question and 67.4 percent on the $2.3 million trash question. We take no position on whether that was the right answer. The part we claim is narrower: the arithmetic was public before the vote, not after it.</p>
+  </div>
+</section>
+
+<!-- ================================================== page 5 -->
+<section class="page" id="tools">
+  <p class="kicker">Civic tools</p>
+  <h2>What we built so readers could check for themselves</h2>
+  <p class="deck">Fourteen free online tools, each one timed to a decision the town was about to make. All of the data behind them is public, and anyone can check the arithmetic.</p>
+  <div class="stats">
+    <div class="stat"><span class="n">14</span><span class="bar"></span><span class="c">Free online tools built and published in year one</span></div>
+    <div class="stat"><span class="n">1,185</span><span class="bar"></span><span class="c">Town employees in the payroll database, covering $65.24 million</span></div>
+    <div class="stat"><span class="n">259</span><span class="bar"></span><span class="c">Residents who answered our survey on the Town Meeting warrant</span></div>
+  </div>
+  <div class="twocol">
+    <div>
+      <h3>The payroll, all of it</h3>
+      <p>Every town employee and every dollar: 1,185 people and $65.24 million, sortable by department and position. Published because a payroll is a policy document that most towns publish as a PDF nobody can read.</p>
+      <h3>Forty-four years of overrides</h3>
+      <p>The full history of Proposition 2&frac12; questions put to Marblehead voters, sortable by type and year, with the result of each.</p>
+      <h3>The fiscal 2027 budget</h3>
+      <p>A tool that let readers move between departments and see what the override actually funded, alongside the levy and override matrices.</p>
+    </div>
+    <div>
+      <h3>Town Meeting, article by article</h3>
+      <p>All 40 warrant articles tracked live on May 4, filed through the night, so a resident who was not in the room could catch up.</p>
+      <h3>The June town election</h3>
+      <p>A voter guide published before the polls opened, then results by all six precincts after they closed.</p>
+      <h3>Asking, then listening</h3>
+      <p>An open survey on the Town Meeting warrant, built and run between March 23 and April 2, article by article. It drew 259 responses in 11 days and was published with its own limits attached: a snapshot of sentiment, not a scientific poll.</p>
+    </div>
+  </div>
+  <div class="box">
+    <h3>What 114 ballot questions actually showed</h3>
+    <p>Since 1982, Marblehead has voted on 114 Proposition 2&frac12; questions, and the record divides cleanly. Debt exclusions — borrowing for something voters could point at — passed 68 times and failed 16. Permanent operating overrides passed three times and failed 18. We published that history on Jan. 28, four months before voters approved $17.3 million in overrides, the second-largest override package in state history.</p>
+  </div>
+</section>
+
+<!-- ================================================== page 6 -->
+<section class="page" id="district">
+  <p class="kicker">The 6th District</p>
+  <h2>The race money explained, before anyone voted</h2>
+  <p class="deck">Congressman Seth Moulton gave up the seat to run for the Senate. Six Democrats ran to replace him. More than $10 million would be spent in the primary.</p>
+  <figure class="wide">
+    <img src="photos/p06-6th-district-forum.jpg" width="980" height="291" alt="Dan Koh, Mariah Lancaster and Tram Nguyen seated at a Democratic primary forum.">
+    <figcaption>Dan Koh, Mariah Lancaster and Tram Nguyen at a Democratic primary forum in Gordon Hall at Salem State University on June 17. Koh and Nguyen finished first and second. <span class="credit">Independent photo / Steve Rood</span></figcaption>
+  </figure>
+  <div class="twocol">
+    <div>
+      <p class="dropcap">A congressional primary is the kind of race a weekly town paper normally covers by printing the candidates’ own descriptions of themselves. We built a database instead. The dashboard at <a href="https://www.marbleheadindependent.com/ma-06">marbleheadindependent.com/ma-06</a> parses every candidate committee’s FEC filings and publishes them in a form a voter can sort: totals by candidate, money by source, donors mapped by town and state, receipts searchable by name and employer and spending by month and category. It also states what it leaves out — independent expenditures, electioneering communications, unitemized giving — because a dashboard that hides its own limits is an advertisement.</p>
+    </div>
+    <div>
+      <p>On Aug. 1, we used it to make an argument: in a six-way primary, advertising money decides which names feel familiar. Dan Koh had raised about $4.5 million and ended June with $3.6 million in hand. John Beccia had loaned himself roughly $3 million and put it on broadcast. Tram Nguyen had $330,000 and bought digital. The other three finished June under $130,000 apiece, which in a district this size means off the air. MASSterList cited the reporting. Koh won the primary on Sept. 1 with 41 percent to Nguyen’s 29.5 — after a super PAC spent about $500,000 on Nguyen’s behalf in the final week.</p>
+    </div>
+  </div>
+  <div class="box">
+    <h3>Where the math stopped</h3>
+    <p>Marblehead turned out at 36.7 percent, 5,679 voters, nearly double the 3,005 who voted in 2024. The town backed its own: Moulton took Marblehead over Edward Markey 60.7 percent to 39.3, carrying all six precincts. He lost statewide. One town voting hard is still one town, and saying so is part of the job.</p>
+  </div>
+</section>
+
+<!-- ================================================== page 7 -->
+<section class="page" id="agenda">
+  <p class="kicker">Off the agenda</p>
+  <h2>Stories from outside the meeting room</h2>
+
+  <article class="story lead">
+    <img src="photos/p07-sylvia-plath.jpg" width="420" height="270" alt="A black-and-white photograph of a young Sylvia Plath on a beach with three children.">
+    <div>
+      <h3>“When Sylvia Plath babysat here”</h3>
+      <p>It began with a black-and-white photograph in a Facebook feed: an 18-year-old pushing a bicycle past a vine-draped house on a winding Marblehead street, 1951. She spent that summer minding three children a few blocks from the water, and wrote it down. Rebuilt from her unabridged journals, the story ended in a Ridge Road living room, read back aloud to the three people she had written about when they were 7, 4 and 2.</p>
+      <p class="meta">Sept. 14, 2025 · Will Dowd · Courtesy photo / Smith College</p>
+    </div>
+  </article>
+
+  <article class="story">
+    <img src="photos/p07-littlest-islanders.jpg" width="438" height="282" alt="A historical photograph of children at the Children's Island Sanitarium with handwritten captions.">
+    <div>
+      <h3>“The littlest islanders”</h3>
+      <p>Newly donated photographs from the Children’s Island Sanitarium, which took in children from Boston’s poorest neighborhoods between 1886 and 1946. Handwritten captions beneath the prints keep their names.</p>
+      <p class="meta">Sept. 13, 2025 · Will Dowd · Courtesy photo / Marblehead Historical Commission</p>
+    </div>
+  </article>
+
+  <article class="story">
+    <img src="photos/p07-bond-coffee.jpg" width="876" height="564" alt="The two founders of Bond Coffee Roasters standing with bags of coffee.">
+    <div>
+      <h3>“Coffee company brewing in Marblehead”</h3>
+      <p>Two neighbors in the Historic District started out roasting green beans on a stovetop. Bond Coffee Roasters now runs from the block they live on and delivers by Japanese mini truck.</p>
+      <p class="meta">Nov. 29, 2025 · Story and photograph by Chris Stevens</p>
+    </div>
+  </article>
+
+  <article class="story">
+    <img src="photos/p07-riverside-drive-lights.jpg" width="438" height="282" alt="Trees wrapped in white Christmas lights along Riverside Drive at night.">
+    <div>
+      <h3>“The Marblehead block where going dark for Christmas is not an option”</h3>
+      <p>A playful contest between two neighbors on Riverside Drive became a managed ritual, complete with tongue-in-cheek rule memos from self-appointed enforcers and a line of cars idling past each night.</p>
+      <p class="meta">Dec. 5, 2025 · Will Dowd · Courtesy photo / Emily DeJoy</p>
+    </div>
+  </article>
+
+  <article class="story">
+    <img src="photos/p07-niko-kuzmina.jpg" width="438" height="282" alt="Niko Kuzmina grinning in a Marblehead Police polo at his sendoff.">
+    <div>
+      <h3>“A sendoff for a Marblehead fixture”</h3>
+      <p>Niko Kuzmina worked a grocery counter here for 23 years. When his mother’s death prompted a move south, coaches, police officers and shop owners filled the Warwick and handed him a police polo with his own name on it.</p>
+      <p class="meta">Jan. 31, 2026 · Story and photograph by Will Dowd</p>
+    </div>
+  </article>
+
+  <article class="story">
+    <img src="photos/p07-roast-beef.jpg" width="438" height="282" alt="A tray of North Shore roast beef sandwiches and fries.">
+    <div>
+      <h3>“Pastries, roast beef put Marblehead Gen Z grads on the map”</h3>
+      <p>Lily Tapper and Max Scivetti turned hometown recipes into restaurants in Swampscott and Beverly. Scivetti first made North Shore roast beef in his college apartment, with sauce his mother mailed him.</p>
+      <p class="meta">Aug. 6, 2026 · Story and photograph by Marc Grazado</p>
+    </div>
+  </article>
+</section>
+
+<!-- ================================================== page 8 -->
+<section class="page" id="allyear">
+  <p class="kicker">The town, all year</p>
+  <h2>Catching Marblehead light</h2>
+  <p class="deck">Accountability reporting is half of it. The other half is the town through its own calendar, photographed all year by Katie Ring, Paula Muller and Steve Rood.</p>
+  <figure class="wide">
+    <img src="photos/p08-blizzard-the-barnacle.jpg" width="980" height="654" alt="A wave breaks over The Barnacle restaurant during a blizzard.">
+    <figcaption>Feb. 23. The blizzard drives waves over The Barnacle at high tide. Readers shared Paula Muller’s photograph through the town’s feeds and liked it more than 1,000 times, more than any picture we ran all year. <span class="credit">Independent photo / Paula Muller</span></figcaption>
+  </figure>
+  <div class="grid3">
+    <figure><img src="photos/p08-memorial-day-taps.jpg" width="520" height="274" alt="John Collins plays taps beside a memorial stone."><figcaption>Memorial Day. John Collins plays taps. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><img src="photos/p08-graduation-caps.jpg" width="520" height="274" alt="Graduation caps thrown in the air."><figcaption>Graduation day. Caps in the air. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><img src="photos/p08-festival-boats.jpg" width="520" height="274" alt="Children launching small sailboats at the Festival of Arts."><figcaption>July 3. Boats at the Festival of Arts. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+  </div>
+  <div class="twocol">
+    <p>Every photograph in these pages was made by Katie Ring, Paula Muller or Steve Rood, who between them bring more than 100 years behind a camera to a town of 20,000.</p>
+    <p>They stand in the blizzard at the Barnacle and at Town Meeting until the last article, and they show this town at its best, week after week. The Independent is so very lucky to have them.</p>
+  </div>
+</section>
+
+<!-- ================================================== page 9 -->
+<section class="page" id="pictures">
+  <p class="kicker">The year in pictures</p>
+  <h2>There when it happened</h2>
+  <p class="deck">A working news team means someone is there when it happens.</p>
+  <div class="grid2">
+    <figure><img src="photos/p09-christmas-walk-detail.jpg" width="660" height="412" alt="Two patrolmen in high-visibility jackets on Christmas Walk detail."><figcaption>December. Patrolmen Christian Hennigar and Owen Picariello on Christmas Walk detail. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><img src="photos/p09-pickett-street-snow.jpg" width="660" height="412" alt="A man shovels snow during a winter storm."><figcaption>Jan. 25. Eli Pearlstein shovels Pickett Street during a winter storm. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><img src="photos/p09-town-meeting-microphone.jpg" width="660" height="412" alt="Jeanne Lambkin speaks at a microphone at Town Meeting."><figcaption>May 4. Jeanne Lambkin takes the microphone at Town Meeting; 40 warrant articles in one night. <span class="credit">Independent photo / Katie Ring</span></figcaption></figure>
+    <figure><img src="photos/p09-ladder-truck.jpg" width="660" height="412" alt="A fire department ladder truck sprays water over a street full of children."><figcaption>Summer. A ladder truck cools a street full of children. <span class="credit">Independent photo / Katie Ring</span></figcaption></figure>
+    <figure><img src="photos/p09-memorial-day-wreaths.jpg" width="660" height="412" alt="A Marine sergeant sets memorial wreaths on the green."><figcaption>Memorial Day. Marine Corps Sgt. Nathaniel “Nat” Grader sets the wreaths on the green. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><img src="photos/p09-post-office-250.jpg" width="660" height="412" alt="Officials gather outside the Marblehead post office for a proclamation."><figcaption>July 2. A Select Board proclamation at the post office marked 250 years of mail. Franklin named the town’s first postmaster in 1775. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- ================================================== page 10 -->
+<section class="page" id="summer">
+  <p class="kicker">High summer</p>
+  <h2>The season the whole town turns out</h2>
+  <figure class="wide">
+    <img src="photos/p10-fireworks-marblehead-light.jpg" width="980" height="675" alt="Fireworks burst beside the illuminated Marblehead Light.">
+    <figcaption>Fireworks over Marblehead Light on the Fourth of July. The town has marked the day this way for longer than anyone photographing it can remember. <span class="credit">Independent photo / Steve Rood</span></figcaption>
+  </figure>
+  <div class="grid3">
+    <figure><img src="photos/p10-gerry-5-pumper.jpg" width="440" height="295" alt="The Gerry 5 hand pumper beside Redd's Pond."><figcaption>June 24. The Gerry 5 pumper draws a crowd at Redd’s Pond. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><img src="photos/p10-small-sailors.jpg" width="440" height="295" alt="Three children in a boat decorated for the Fourth of July."><figcaption>July 4. Three small sailors in a decorated boat. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><img src="photos/p10-musket-volley.jpg" width="440" height="295" alt="Reenactors fire a musket volley beside the harbor."><figcaption>A musket volley beside the harbor. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+  </div>
+  <p>Summer is when the whole town comes outside, and we try to be there with it. These are the days people remember, and they belong in the paper as much as any Town Meeting vote.</p>
+</section>
+
+<!-- ================================================== page 11 -->
+<section class="page" id="winter">
+  <p class="kicker">December to February</p>
+  <h2>A town that does not close for the winter</h2>
+  <p class="deck">Some of Marblehead’s biggest traditions happen in the cold. So does its worst weather, which is when a local paper earns its keep.</p>
+  <figure class="wide">
+    <img src="photos/p11-christmas-walk.jpg" width="900" height="450" alt="A crowd fills Washington Street during the Christmas Walk.">
+    <figcaption>Washington Street minutes after Santa came ashore at the 2025 Christmas Walk. <span class="credit">Independent photo / Paula Muller</span></figcaption>
+  </figure>
+  <div class="grid3">
+    <figure><img src="photos/p11-epiphany-bonfire.jpg" width="520" height="361" alt="Three firefighters lit by the Epiphany bonfire."><figcaption>Jan. 6. Firefighters Liam Gilliland, Aidan Gillis and Chris McGrath at the Epiphany bonfire, Riverhead Beach. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><img src="photos/p11-santa-lobster-boat.jpg" width="648" height="450" alt="Santa arrives by lobster boat with garland on the bow."><figcaption>Santa arrives by lobster boat, garland on the bow, to open the Walk. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><img src="photos/p11-wreath-circle-st.jpg" width="520" height="361" alt="A wreath on a red door rimed with snow."><figcaption>Feb. 23. A wreath on the door of 22 Circle St., rimed with wind-driven snow. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+  </div>
+  <p>Winter is when readership is least optional. Closures, outages, parking bans, whether the causeway is passable at high tide — in a coastal town these are not soft stories, and they are the ones people search for at six in the morning. The same season carries the Christmas Walk and the Epiphany bonfire that hundreds turn out for, which is the argument for covering both halves: a reader who checks the storm page in February is the reader who opens the Walk photographs in December.</p>
+</section>
+
+<!-- ================================================== page 12 -->
+<section class="page" id="newsroom">
+  <p class="kicker">The newsroom</p>
+  <h2>The people who make the Independent</h2>
+  <figure class="wide">
+    <img src="photos/p12-newsroom-picnic.jpg" width="1316" height="516" alt="The news team gathered for a group photograph at a harbor picnic.">
+    <figcaption>Most of the news team met face to face for the first time at a harbor picnic in late August, just before our first birthday. <span class="credit">Independent photo / Steve Rood</span></figcaption>
+  </figure>
+  <div class="people">
+    <figure><img src="photos/staff-chris-stevens.jpg" width="450" height="600" alt="Chris Stevens"><figcaption><p class="nm">Chris Stevens</p><p class="role">Second in command, editorial board</p><p class="bio">Edited the Marblehead Reporter for years. Covered Lynn for The Daily Item.</p></figcaption></figure>
+    <figure><img src="photos/staff-nell-escobar-coakley.jpg" width="450" height="600" alt="Nell Escobar Coakley"><figcaption><p class="nm">Nell Escobar Coakley</p><p class="role">Editorial board</p><p class="bio">A veteran North Shore editor; the standard a story is held to.</p></figcaption></figure>
+    <figure><img src="photos/staff-marc-grazado.jpg" width="450" height="600" alt="Marc Grazado"><figcaption><p class="nm">Marc Grazado</p><p class="role">Reporter</p><p class="bio">A Marblehead kid, now studying media at UMass Amherst.</p></figcaption></figure>
+    <figure><img src="photos/staff-wendall-waters.jpg" width="450" height="600" alt="Wendall Waters"><figcaption><p class="nm">Wendall Waters</p><p class="role">Reporter</p><p class="bio">Decades of North Shore reporting behind every piece.</p></figcaption></figure>
+    <figure><img src="photos/staff-joanna-shellenberger.jpg" width="450" height="600" alt="Joanna Shellenberger"><figcaption><p class="nm">Joanna Shellenberger</p><p class="role">Business adviser</p><p class="bio">Finance and operations. No say in coverage.</p></figcaption></figure>
+    <figure><img src="photos/staff-nick-kent.jpg" width="450" height="600" alt="Nick Kent"><figcaption><p class="nm">Nick Kent</p><p class="role">Graphic design</p><p class="bio">Our go-to designer, and the brains behind the linocut nameplate.</p></figcaption></figure>
+    <figure><img src="photos/staff-paula-muller.jpg" width="450" height="600" alt="Paula Muller"><figcaption><p class="nm">Paula Muller</p><p class="role">Photographer</p><p class="bio">Forty years a news photographer. Contributor to the Times and AP.</p></figcaption></figure>
+    <figure><img src="photos/staff-steve-rood.jpg" width="450" height="600" alt="Steve Rood"><figcaption><p class="nm">Steve “Stevo” Rood</p><p class="role">Photographer</p><p class="bio">Forty years shooting concerts, from the Fools to the Stones.</p></figcaption></figure>
+    <figure><img src="photos/staff-katie-ring.jpg" width="450" height="600" alt="Katie Ring"><figcaption><p class="nm">Katie Ring</p><p class="role">Photographer, columnist</p><p class="bio">Newhouse-trained. Writes Marblehead Morsels.</p></figcaption></figure>
+    <figure><img src="photos/staff-will-dowd.jpg" width="450" height="600" alt="Will Dowd"><figcaption><p class="nm">Will Dowd</p><p class="role">Founder and editor</p><p class="bio">Started reporting here in 2012 and has failed spectacularly at leaving.</p></figcaption></figure>
+  </div>
+</section>
+
+<!-- ================================================== page 13 -->
+<section class="page" id="columnists">
+  <p class="kicker">The columnists</p>
+  <h2>People writing about the thing they already do</h2>
+  <p class="deck">Not one of them came to this from a newsroom. Each writes about Marblehead better than a visiting reporter could, because they live here.</p>
+  <div class="people three">
+    <figure><img src="photos/columnist-ryan-park.jpg" width="450" height="600" alt="Ryan Park"><figcaption><p class="nm">Ryan Park</p><p class="role">“Beneath the Blue”</p></figcaption></figure>
+    <figure><img src="photos/columnist-colleen-connor.jpg" width="450" height="600" alt="Colleen Connor"><figcaption><p class="nm">Colleen Connor</p><p class="role">“Colleen’s Garden”</p></figcaption></figure>
+    <figure><img src="photos/columnist-theresa-milewski.jpg" width="450" height="600" alt="Theresa Myung Hee Milewski"><figcaption><p class="nm">Theresa Myung Hee Milewski</p><p class="role">“Computers 101”</p></figcaption></figure>
+  </div>
+  <p class="dropcap" style="margin-top:1.8em">Ryan Park is a dentist who freedives, and <strong>“Beneath the Blue”</strong> is the only column in this paper filed from underwater. He has written about the clarity of the water in February, the harvest on the rocks, the discipline of a single breath. It is the rarest thing a local paper can hand a reader: a chance to see a part of their town not often seen. Colleen Connor works the opposite rhythm. <strong>“Colleen’s Garden”</strong> follows the calendar of a cottage garden she has kept for years — seeds in the cold months, then the bunnies, then roses giving way to daylilies — and it is the most practical thing we publish: readers go outside and do what it says.</p>
+  <p>Theresa Myung Hee Milewski spent a career as a software engineer and runs All Computers Great and Small. <strong>“Computers 101”</strong> is what that experience sounds like aimed at a neighbor instead of a help desk: where the file actually went, who is backing up the backups, why “Allow notifications” is the most dangerous button on the internet. Katie Ring, pictured on <a href="#newsroom">the previous page</a>, shoots this town and then sits down at its tables. <strong>“Marblehead Morsels”</strong> pairs her own pictures with first-person reporting from the meal — the Driftwood, Le Petit Comptoir, a straight-faced case for eating local.</p>
+  <p>Four columns, four authorities no one had to assign. Each one is a reason someone opens the paper who might not have come for the budget.</p>
+</section>
+
+<!-- ================================================== page 14 -->
+<section class="page" id="record">
+  <p class="kicker">The outside record</p>
+  <h2>How the work was received</h2>
+  <p class="deck">Three ways to tell whether local reporting worked: other outlets cite it, other groups join in or a volunteer effort can stand down because you are there.</p>
+  <div class="twocol">
+    <div>
+      <h3>Credited where it counted</h3>
+      <p>On May 4, David Modica, a resident with no standing in town politics, stood up at Town Meeting and asked whether Marblehead’s fourth attempt at a multifamily overlay under the MBTA Communities Act would produce any housing. The clip went national. We interviewed him two days later, and on May 7 The Wall Street Journal credited that interview.</p>
+      <p>In the 6th District primary, no one else put the candidates’ money on a page a voter could read. MASSterList cited that work, and Axios cited our primary coverage. Dan Kennedy, who writes the Media Nation website, covered the launch. We took part in Town Meeting-preview and year-end discussions on MHTV’s “Headliner,” and Abbot Public Library reposted the work.</p>
+    </div>
+    <div>
+      <h3>Done with other people</h3>
+      <p>The town election on June 9 ran in partnership with the Marblehead Weekly News: six precincts reported together, drawing a combined 6,000 page views across both sites on election night. Two newsrooms teamed up because election night is bigger than either of them. MHTV, the Council on Aging and the League of Women Voters of Marblehead all carried or contributed work across the year. These were collaborations rather than contracts. No money changed hands, and none needed to.</p>
+    </div>
+  </div>
+  <div class="box">
+    <h3>The review we did not ask for</h3>
+    <p>On Aug. 29, the League of Women Voters of Marblehead closed the Observer Corps it had run since 2019 — 399 reports on 15 town bodies, filed by 15 volunteers over seven years. Its founder wrote that expanded coverage by local media had made the assignments duplicative, and thanked three outlets, this one among them. It is also an obligation: those 15 boards still meet, and someone has to be in the room.</p>
+  </div>
+  <p class="pull">A volunteer watchdog standing down because the reporting improved is the only kind of impact a newsroom cannot write for itself.</p>
+</section>
+
+<!-- ================================================== page 15 -->
+<section class="page" id="readers">
+  <p class="kicker">Who reads it</p>
+  <h2>A civic habit</h2>
+  <p class="deck">Marblehead votes, argues and shows up at a rate most towns do not. That is the whole business case.</p>
+  <div class="stats">
+    <div class="stat"><span class="n">303,062</span><span class="bar"></span><span class="c">Unique visitors to the site in year one</span></div>
+    <div class="stat"><span class="n">939</span><span class="bar"></span><span class="c">Free weekly newsletter subscribers, up from 275 at launch</span></div>
+    <div class="stat"><span class="n">3,070</span><span class="bar"></span><span class="c">Facebook followers on Sept. 14, 2026, up from 1,020 last Dec. 31</span></div>
+  </div>
+  <table>
+    <tr><th>Channel</th><th>Measure</th><th class="num">Figure</th></tr>
+    <tr><td>Website</td><td>Page views</td><td class="num">606,445</td></tr>
+    <tr><td>Facebook</td><td>Views / viewers</td><td class="num">4,005,573 / 360,167</td></tr>
+    <tr><td>Weekly newsletter</td><td>Open rate</td><td class="num">72.5 percent</td></tr>
+  </table>
+  <figure class="wide">
+    <img src="photos/p15-family-harbor.jpg" width="980" height="282" alt="A family sits on a bench overlooking the harbor on a summer evening.">
+    <figcaption>A family keeps its own watch over the harbor on a summer evening. Twenty thousand people live within a mile of this bench, and the reporting is for all of them. <span class="credit">Independent photo / Steve Rood</span></figcaption>
+  </figure>
+  <h3>The town itself</h3>
+  <p>About 20,300 residents in 8,187 households. Median age 49, median household income near $166,000, household broadband at 96 percent. The June town election drew 47.5 percent turnout, a record in books that go back to 2006.</p>
+  <p>Two-thirds of our Facebook followers live in Marblehead and about four-fifths are 45 or older — almost exactly the demographic that pays. In March, we asked residents where they stood on the Town Meeting warrant, and 259 answered inside 11 days — a response rate that only happens in a town already paying attention.</p>
+  <div class="signup">
+    <a href="https://newsletter.marbleheadindependent.com/subscription/form"><img src="photos/qr-newsletter.png" width="330" height="330" alt="QR code for the newsletter signup form"></a>
+    <div>
+      <h3>Get the Independent in your inbox, free</h3>
+      <p>Scan the code or visit <a href="https://newsletter.marbleheadindependent.com/subscription/form"><strong>newsletter.marbleheadindependent.com/subscription/form</strong></a> to sign up. Already a subscriber? Forward it to someone who cares about Marblehead.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================== page 16 -->
+<section class="page" id="transparency">
+  <p class="kicker">Transparency</p>
+  <h2>Where the money came from, and where it went</h2>
+  <p class="deck">Every figure below is money that actually moved.</p>
+  <div class="stats">
+    <div class="stat"><span class="n">$51,010</span><span class="bar"></span><span class="c">Raised in year one, every dollar of it from readers and sponsors</span></div>
+    <div class="stat"><span class="n">$22,074</span><span class="bar"></span><span class="c">Given by members, the only money that renews on its own</span></div>
+    <div class="stat"><span class="n">119</span><span class="bar"></span><span class="c">People who are members today, one year in</span></div>
+  </div>
+  <table>
+    <tr><th>Where it came from</th><th class="num">Amount</th></tr>
+    <tr><td>Members*</td><td class="num">$22,074</td></tr>
+    <tr><td>The Founders’ Circle</td><td class="num">$25,021</td></tr>
+    <tr><td>Business sponsors</td><td class="num">$3,575</td></tr>
+    <tr><td>Other one-time gifts</td><td class="num">$340</td></tr>
+    <tr class="total"><td>Total raised</td><td class="num">$51,010</td></tr>
+  </table>
+  <table>
+    <tr><th>Where it went</th><th class="num">Amount</th></tr>
+    <tr><td>Editor’s pay, including self-employment tax&dagger;</td><td class="num">$29,637</td></tr>
+    <tr><td>Operating costs, insurance and technology</td><td class="num">$10,751</td></tr>
+    <tr><td>Contributors and photographers</td><td class="num">$5,050</td></tr>
+    <tr><td>Held in reserve</td><td class="num">$5,572</td></tr>
+    <tr class="total"><td>Total</td><td class="num">$51,010</td></tr>
+  </table>
+  <p class="fn">*Members give a set amount every month or every year by card, and theirs is the only line that renews on its own. The Founders’ Circle gave one-time gifts of $100 or more and is named on <a href="#founders">page 17</a>. Business sponsors are the local businesses on <a href="#sponsors">page 18</a>. Other one-time gifts are under $100. Of the $51,010, $37,360 arrived by card and the other $13,650 by check.</p>
+  <p class="fn">&dagger;A year of full-time work, about 40 hours a week. It is what was left after the bills, the contributors and the reserve, and the line closes with the reconciliation on Oct. 31.</p>
+  <h3>Today 119 people give.</h3>
+  <p>The average member gives $17.75 a month. All 25 who joined in the first month are still members. Six have stopped in a year, five of them because a card expired rather than by choice, and exactly one person decided to leave. Keeping members has never been the hard part. Finding them is.</p>
+</section>
+
+<!-- ================================================== page 17 -->
+<section class="page" id="founders">
+  <p class="kicker">Acknowledgements</p>
+  <h2>The people who believed first</h2>
+  <div class="twocol">
+    <p class="dropcap">The Founders’ Circle paid for the first months, when there was nothing to show a prospective contributor or reader but a plan. It bought the one thing a new newsroom cannot buy for itself: time enough to start with memory and context rather than with whatever was cheapest to publish. Many have given more than money. They have offered their time, expertise and encouragement, helping us build this newsroom from the ground up. To everyone named on this page and the next, thank you. None of this happens without you.</p>
+    <p>We would like to especially thank Douglas Hill, Bette Hunt, Alexander and Nora Falk, Pam Peterson, Elaine Leahy, Melissa Stacey, Jack Kabrel, Judith Black, Anthony and Jo Ann Silva, SCORE mentors Michael Thompson and Jeff Averick, Nick Ward, Nick Kent, Chris Stevens, Paul Zabroske and Mary Kate Cullinane. We are eternally grateful to Jessica and Andrew Barnett, who allowed us to operate the Independent out of the basement of their Humphrey Street home. We have since graduated to Suite 306, 74 Atlantic Ave.</p>
+  </div>
+  <div class="tiers">
+    <div>
+      <h4>$5,000 or more</h4>
+      <ul><li>Nora and Alexander Falk</li></ul>
+      <h4>$2,500 or more</h4>
+      <ul><li>Bette Hunt</li><li>Meredith and Dana Tufts</li><li>Charles and Susan Gessner</li><li>Joanna Shellenberger</li></ul>
+      <h4>$1,000 or more</h4>
+      <ul><li>William Park</li><li>Douglas Hill</li><li>Eric and Iris Reines</li><li>Don and Laney Dowling</li><li>Louisa and Don Morgan</li></ul>
+    </div>
+    <div>
+      <h4>$500 or more</h4>
+      <ul><li>Edward and Julie Moore</li><li>David C. Gowell</li><li>Robert Simonelli</li><li>Terrance Connor and Gregory Swalwell</li><li>Robert French</li><li>Lee Mondale</li><li>Maureen and Rick Ashley</li><li>Michael Goldman</li><li>Karyn and Gary Lang</li><li>Mimi Lemay</li><li>Dr. Kenneth Taylor</li><li>Sean McHugh</li></ul>
+    </div>
+    <div>
+      <h4>$250 or more</h4>
+      <ul><li>Helaine and James Hazlett</li><li>Josephine Howard</li><li>Diane and Lee Wolf</li><li>Brian Gray</li><li>Melissa Stacey</li><li>Buck and Beth Grader</li><li>Nancy and Larry Gwin</li><li>Mimi Hollister</li><li>Jeanne Lambkin</li><li>Stephen and Cheryl Saltzman</li><li>Marine and Perrin Regnault</li><li>John G. DiPiano</li><li>Nan Dumas</li></ul>
+    </div>
+  </div>
+  <div class="tier100">
+    <h4>$100 or more</h4>
+    <div class="cols">
+      <ul><li>David and Marla Meyer</li><li>Katharine and Paul Redmond</li><li>Diane Barbour</li><li>Pamela and Peter Evans</li><li>Charlene Tyler</li><li>Rick Smyers</li><li>Donald Carelton</li><li>Harlan Strader</li><li>Eric Knight and Eugenia Guastaferri</li><li>Pat and Mary Franklin</li><li>Matthew Wolverton and Sarah Fox</li><li>Kathleen Leonardson</li></ul>
+      <ul><li>Jennifer Uhl</li><li>Karen McMahon</li><li>Lesley Hart Tracy</li><li>Jessica and Andrew Barnett</li><li>Margo W. Steiner</li><li>Allen and Susan Waller</li><li>Katherine Howe</li><li>Kevin Collins and Laurie Swope</li><li>Bonnie and Ronald Grenier</li><li>Katherine Van Dorpe</li><li>Lynn Nadeau</li><li>Walter Horan</li></ul>
+      <ul><li>Teri Allen McDonough</li><li>Tom Samuelson</li><li>John E. Whipple</li><li>Sharman Pollender</li><li>Jane Casler</li><li>FM Widener</li><li>Xhazzie Kindle</li><li>Dr. Keith Taylor</li><li>Cathy Marie Michael</li><li>Judith Black</li><li>Shari Pressman</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================== page 18 -->
+<section class="page" id="sponsors">
+  <p class="kicker">Acknowledgements</p>
+  <h2>Partners in local journalism</h2>
+  <p class="dropcap">Sponsorship is how a local business, nonprofit or organization supports the paper. When we launched the Independent, we made a deliberate choice to avoid clutter: no banner ads and no pop-ups, just a site built around readers first and a simple sponsorship model. That is why the site is clean, easy to read and full of white space, and a round of improvements this fall brought it closer to that original vision. Sponsors are recognized on the site and in the weekly newsletter. By written policy, no sponsor, member or business partner influences what we cover — ever.</p>
+  <p>We think of sponsorship as a partnership. The businesses and organizations on this page are not just reaching our readers. Their support is a statement that local journalism matters in Marblehead, and it helped keep the paper free to read for everyone in town.</p>
+  <p class="subkicker">Premier sponsors</p>
+  <div class="logos premier">
+    <figure><img src="photos/sponsor-altova.png" alt="Altova"><figcaption>Altova</figcaption></figure>
+    <figure><img src="photos/sponsor-carol-kent-yacht-charters.png" alt="Carol Kent Yacht Charters"><figcaption>Carol Kent Yacht Charters</figcaption></figure>
+  </div>
+  <p class="subkicker">Community and neighbor sponsors</p>
+  <div class="logos">
+    <figure><img src="photos/sponsor-marblehead-bank.png" alt="Marblehead Bank"><figcaption>Marblehead Bank</figcaption></figure>
+    <figure><img src="photos/sponsor-all-computers-great-and-small.png" alt="All Computers Great and Small"><figcaption>All Computers Great and Small</figcaption></figure>
+    <figure><img src="photos/sponsor-lighthouse-fitness.jpg" alt="Lighthouse Fitness Studio"><figcaption>Lighthouse Fitness Studio</figcaption></figure>
+    <figure><img src="photos/sponsor-marblehead-custom-jewelry.jpg" alt="Marblehead Custom Jewelry"><figcaption>Marblehead Custom Jewelry</figcaption></figure>
+    <figure><img src="photos/sponsor-sustainable-marblehead.png" alt="Sustainable Marblehead"><figcaption>Sustainable Marblehead</figcaption></figure>
+    <figure><img src="photos/sponsor-glover-property-management.png" alt="Glover Property Management Inc."><figcaption>Glover Property Management Inc.</figcaption></figure>
+    <figure><img src="photos/sponsor-marblehead-childrens-center.jpg" alt="The Marblehead Children's Center"><figcaption>The Marblehead Children’s Center</figcaption></figure>
+  </div>
+</section>
+
+<!-- ================================================== page 19 -->
+<section class="page help" id="help">
+  <figure class="wide">
+    <img src="photos/p19-franklin-street-firehouse.jpg" width="980" height="552" alt="Firefighters and a neighbor with their dogs shelter from rain in an open firehouse engine bay.">
+    <figcaption>The Franklin Street firehouse offers shelter from a downpour on Aug. 3 in an open engine bay, dogs included. <span class="credit">Independent photo / Steve Rood</span></figcaption>
+  </figure>
+  <p class="kicker">How to help</p>
+  <h2>Help us keep Marblehead informed about Marblehead.</h2>
+  <p class="dropcap">The Independent is free to read and always will be, and everything in this report was made possible by the people who choose to support it. Memberships start at $10 a month or $120 a year. Here is what a membership buys.</p>
+  <div class="stats">
+    <div class="stat"><span class="n">$0</span><span class="c">What anyone pays to read the Independent or to use the payroll database, the override history and the Town Meeting tracker.</span></div>
+    <div class="stat"><span class="n">$5,050</span><span class="c">What members paid the photographers and contributors whose work fills these pages.</span></div>
+    <div class="stat"><span class="n">119</span><span class="c">People who are members today. If the Independent has been useful to you this year, join them.</span></div>
+  </div>
+  <p class="small" style="border-top:1px solid var(--soft);padding-top:1.2em">Not everyone can give, and money is not the only help. Tell a friend we exist, read what we publish and share the stories that matter. A paper with no marketing budget runs on that.</p>
+  <div class="give">
+    <a href="https://marbleheadindependent.com/ways-to-support"><img src="photos/qr-ways-to-support.png" width="330" height="330" alt="QR code for marbleheadindependent.com/ways-to-support"></a>
+    <div>
+      <p class="url"><a href="https://marbleheadindependent.com/ways-to-support" style="color:inherit;text-decoration:none">marbleheadindependent.com/ways-to-support</a></p>
+      <p>Or make a check out to The Marblehead Independent and send it to Suite 306, 74 Atlantic Ave., Marblehead, Massachusetts 01945. <a href="mailto:wdowd@marbleheadindependent.com">wdowd@marbleheadindependent.com</a> · 781-910-8658</p>
+    </div>
+  </div>
+  <div class="plate2">
+    <div class="np">
+      <img src="photos/linocut.png" width="360" height="617" alt="">
+      <div><span class="a">The Marblehead</span><span class="b">INDEPENDENT</span></div>
+    </div>
+    <p class="tag">Independent journalism for Marblehead.<br>No paywall. Reader supported.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div>
+    <a href="https://www.marbleheadindependent.com">The Marblehead Independent</a>
+    <a href="https://www.marbleheadindependent.com/ways-to-support">Ways to support</a>
+    <a href="#contents">Contents</a>
+    <a href="#top">Back to the top</a>
+    <p>&copy; 2026 The Marblehead Independent. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copylink').addEventListener('click', function(){
+  var b=this; navigator.clipboard.writeText(b.dataset.url).then(function(){
+    var t=b.textContent; b.textContent='Copied'; setTimeout(function(){b.textContent=t;},1800);
+  });
+});
+</script>
+</body>
+</html>
