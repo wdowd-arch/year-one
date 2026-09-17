@@ -39,15 +39,16 @@ p{margin:0 0 1.1em}
 .skip:focus{left:8px;top:8px;background:#fff;padding:.6em 1em;z-index:100}
 
 /* ---------- chrome ---------- */
-.topbar{border-bottom:1px solid var(--soft);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
-.topbar div{max-width:var(--page);margin:0 auto;padding:.8em 1.4em;display:flex;gap:1.6em}
-.topbar a{color:var(--muted);text-decoration:none}
-.topbar a:hover{color:var(--red)}
-.sectionnav{position:sticky;top:0;z-index:20;background:var(--canvas);border-bottom:1px solid var(--soft)}
-.sectionnav ul{max-width:var(--page);margin:0 auto;padding:.75rem 1.4rem;list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem 1.9rem}
-.sectionnav a{display:inline-block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;white-space:nowrap;padding-bottom:.25em;border-bottom:2px solid transparent}
-.sectionnav a:hover,.sectionnav a[aria-current]{border-bottom-color:currentColor}
-.sectionnav a.cta{color:var(--red)}
+.topbar{position:sticky;top:0;z-index:20;background:var(--canvas);border-bottom:1px solid var(--soft)}
+.topbar .bar{max-width:66em;margin:0 auto;padding:.7rem 1.4rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.4rem 1.6rem}
+.topbar .site{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.topbar .sections{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem}
+.topbar .sections li{display:flex}
+.topbar a{display:inline-block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;color:var(--muted);padding-bottom:.2em;border-bottom:2px solid transparent}
+.topbar .site a:hover{color:var(--red)}
+.topbar .sections a{color:var(--blue)}
+.topbar .sections a:hover,.topbar .sections a[aria-current]{border-bottom-color:currentColor}
+.topbar .sections a.cta{color:var(--red)}
 
 /* ---------- pages ---------- */
 .page{max-width:var(--page);margin:0 auto;padding:3.4em 1.4em 2.6em;scroll-margin-top:4em}
@@ -179,8 +180,9 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 
 @media (max-width:760px){
   body{font-size:17px}
-  .sectionnav ul{gap:.4rem 1.1rem;padding:.65rem 1rem}
-  .sectionnav a{letter-spacing:.06em}
+  .topbar .bar{justify-content:center;gap:.35rem 1rem;padding:.6rem 1rem}
+  .topbar .site,.topbar .sections{justify-content:center;gap:.35rem 1rem}
+  .topbar a{letter-spacing:.06em}
   .twocol,.grid2,.tier100 .cols{grid-template-columns:1fr}
   .tiers{grid-template-columns:1fr}
   .grid3{grid-template-columns:1fr 1fr}
@@ -204,21 +206,20 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 
 <a class="skip" href="#editor">Skip to the report</a>
 
-<nav class="topbar" aria-label="Site">
-  <div>
-    <a href="https://www.marbleheadindependent.com">MHD Indy home</a>
-    <a href="https://www.marbleheadindependent.com/ways-to-support">Ways to support</a>
+<nav class="topbar" aria-label="Site and sections">
+  <div class="bar">
+    <div class="site">
+      <a href="https://www.marbleheadindependent.com">MHD Indy home</a>
+      <a href="https://www.marbleheadindependent.com/ways-to-support">Ways to support</a>
+    </div>
+    <ul class="sections">
+      <li><a href="#contents">Contents</a></li>
+      <li><a href="#editor">The reporting</a></li>
+      <li><a href="#allyear">The year</a></li>
+      <li><a href="#newsroom">The Independent</a></li>
+      <li><a class="cta" href="#help">How to help</a></li>
+    </ul>
   </div>
-</nav>
-
-<nav class="sectionnav" aria-label="Sections">
-  <ul>
-    <li><a href="#contents">Contents</a></li>
-    <li><a href="#editor">The reporting</a></li>
-    <li><a href="#allyear">The year</a></li>
-    <li><a href="#newsroom">The Independent</a></li>
-    <li><a class="cta" href="#help">How to help</a></li>
-  </ul>
 </nav>
 
 <main>
@@ -230,11 +231,6 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <img class="lino" src="photos/linocut.png" width="360" height="617" alt="Linocut of the Old Town House, the nameplate of The Marblehead Independent.">
   <p class="plate"><span class="a">The Marblehead</span><span class="b">INDEPENDENT</span></p>
 </header>
-<figure class="coverphoto">
-  <img src="photos/cover-spirit-of-76.jpg" width="1100" height="634" alt="Children recreate Archibald Willard's 'The Spirit of '76' inside a handmade frame during the Fourth of July horribles parade.">
-</figure>
-
-<!-- ================================================== page 2 -->
 <section class="page contents" id="contents">
   <p class="kicker">Impact Report 2025–26</p>
   <h2>Contents</h2>
@@ -279,6 +275,12 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
     <button type="button" id="copylink" data-url="https://www.marbleheadindependent.com/year-one/">Copy link</button>
   </div>
 </section>
+
+<figure class="coverphoto">
+  <img src="photos/cover-spirit-of-76.jpg" width="1100" height="634" alt="Children recreate Archibald Willard's 'The Spirit of '76' inside a handmade frame during the Fourth of July horribles parade.">
+</figure>
+
+<!-- ================================================== page 2 -->
 
 <!-- ================================================== page 3 -->
 <section class="page" id="editor">
@@ -746,7 +748,7 @@ document.getElementById('copylink').addEventListener('click', function(){
 
 <script>
 (function(){
-  var nav = document.querySelector('.sectionnav');
+  var nav = document.querySelector('.topbar');
   if (!nav) return;
   var groups = [
     ['contents','#contents'],
@@ -759,10 +761,10 @@ document.getElementById('copylink').addEventListener('click', function(){
     ['sponsors','#newsroom'],
     ['help','#help']
   ];
-  var items = [], links = nav.querySelectorAll('a'), i;
+  var items = [], links = nav.querySelectorAll('.sections a'), i;
   for (i = 0; i < groups.length; i++) {
     var el = document.getElementById(groups[i][0]);
-    var link = nav.querySelector('a[href="' + groups[i][1] + '"]');
+    var link = nav.querySelector('.sections a[href="' + groups[i][1] + '"]');
     if (el && link) items.push({el:el, link:link});
   }
   var current = null;
