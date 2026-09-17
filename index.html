@@ -43,14 +43,14 @@ p{margin:0 0 1.1em}
 .topbar div{max-width:var(--page);margin:0 auto;padding:.8em 1.4em;display:flex;gap:1.6em}
 .topbar a{color:var(--muted);text-decoration:none}
 .topbar a:hover{color:var(--red)}
-.sectionnav{background:#fff;border-bottom:1px solid var(--soft)}
-.sectionnav ul{max-width:60em;margin:0 auto;padding:.55em 1.2em;list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.5em 1.1em;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;scrollbar-width:none}
-.sectionnav ul::-webkit-scrollbar{display:none}
-.sectionnav a{color:var(--muted);text-decoration:none;white-space:nowrap;padding-bottom:.2em;border-bottom:2px solid transparent}
-.sectionnav a:hover{color:var(--red);border-bottom-color:var(--red)}
+.sectionnav{position:sticky;top:0;z-index:20;background:var(--canvas);border-bottom:1px solid var(--soft)}
+.sectionnav ul{max-width:var(--page);margin:0 auto;padding:.75rem 1.4rem;list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem 1.9rem}
+.sectionnav a{display:inline-block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;white-space:nowrap;padding-bottom:.25em;border-bottom:2px solid transparent}
+.sectionnav a:hover,.sectionnav a[aria-current]{border-bottom-color:currentColor}
+.sectionnav a.cta{color:var(--red)}
 
 /* ---------- pages ---------- */
-.page{max-width:var(--page);margin:0 auto;padding:3.4em 1.4em 2.6em;scroll-margin-top:1em}
+.page{max-width:var(--page);margin:0 auto;padding:3.4em 1.4em 2.6em;scroll-margin-top:4em}
 .page + .page{border-top:1px solid var(--soft)}
 .kicker{font-size:.72rem;font-weight:bold;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin:0 0 .5em}
 h2{font-size:clamp(1.6rem,3.6vw,2.15rem);line-height:1.15;margin:0 0 .5em;padding-bottom:.35em;border-bottom:1px solid var(--rule);letter-spacing:-.008em}
@@ -147,7 +147,8 @@ tr.total td{font-weight:bold;border-bottom:2px solid var(--ink)}
 .address{font-size:.86rem;line-height:1.5;color:var(--ink);margin:0}
 .contents .share{justify-content:center}
 
-.signup{display:grid;grid-template-columns:7em 1fr;gap:1.4em;align-items:center;border-top:1px solid var(--soft);padding-top:1.4em;margin-top:1.6em}
+.signup{display:grid;grid-template-columns:7em minmax(0,1fr);gap:1.4em;align-items:center;border-top:1px solid var(--soft);padding-top:1.4em;margin-top:1.6em}
+.signup p a{word-break:break-all}
 .signup img{width:7em}
 .signup h3{margin:0 0 .3em;font-size:1.05rem}
 .signup p{margin:0;font-size:.92rem}
@@ -178,7 +179,8 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 
 @media (max-width:760px){
   body{font-size:17px}
-  .sectionnav ul{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto}
+  .sectionnav ul{gap:.4rem 1.1rem;padding:.65rem 1rem}
+  .sectionnav a{letter-spacing:.06em}
   .twocol,.grid2,.tier100 .cols{grid-template-columns:1fr}
   .tiers{grid-template-columns:1fr}
   .grid3{grid-template-columns:1fr 1fr}
@@ -212,23 +214,10 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 <nav class="sectionnav" aria-label="Sections">
   <ul>
     <li><a href="#contents">Contents</a></li>
-    <li><a href="#editor">Editor</a></li>
-    <li><a href="#override">Override</a></li>
-    <li><a href="#tools">Civic tools</a></li>
-    <li><a href="#district">6th District</a></li>
-    <li><a href="#agenda">Off the agenda</a></li>
-    <li><a href="#allyear">All year</a></li>
-    <li><a href="#pictures">Pictures</a></li>
-    <li><a href="#summer">Summer</a></li>
-    <li><a href="#winter">Winter</a></li>
-    <li><a href="#newsroom">Newsroom</a></li>
-    <li><a href="#columnists">Columnists</a></li>
-    <li><a href="#record">Outside record</a></li>
-    <li><a href="#readers">Who reads it</a></li>
-    <li><a href="#transparency">Transparency</a></li>
-    <li><a href="#founders">Founders</a></li>
-    <li><a href="#sponsors">Sponsors</a></li>
-    <li><a href="#help">How to help</a></li>
+    <li><a href="#editor">The reporting</a></li>
+    <li><a href="#allyear">The year</a></li>
+    <li><a href="#newsroom">The Independent</a></li>
+    <li><a class="cta" href="#help">How to help</a></li>
   </ul>
 </nav>
 
@@ -753,6 +742,50 @@ document.getElementById('copylink').addEventListener('click', function(){
     var t=b.textContent; b.textContent='Copied'; setTimeout(function(){b.textContent=t;},1800);
   });
 });
+</script>
+
+<script>
+(function(){
+  var nav = document.querySelector('.sectionnav');
+  if (!nav) return;
+  var groups = [
+    ['contents','#contents'],
+    ['editor','#editor'], ['override','#editor'], ['tools','#editor'],
+    ['district','#editor'], ['agenda','#editor'],
+    ['allyear','#allyear'], ['pictures','#allyear'],
+    ['summer','#allyear'], ['winter','#allyear'],
+    ['newsroom','#newsroom'], ['columnists','#newsroom'], ['record','#newsroom'],
+    ['readers','#newsroom'], ['transparency','#newsroom'], ['founders','#newsroom'],
+    ['sponsors','#newsroom'],
+    ['help','#help']
+  ];
+  var items = [], links = nav.querySelectorAll('a'), i;
+  for (i = 0; i < groups.length; i++) {
+    var el = document.getElementById(groups[i][0]);
+    var link = nav.querySelector('a[href="' + groups[i][1] + '"]');
+    if (el && link) items.push({el:el, link:link});
+  }
+  var current = null;
+  function update(){
+    var line = nav.getBoundingClientRect().bottom + 8, found = null, j;
+    for (j = 0; j < items.length; j++) {
+      if (items[j].el.getBoundingClientRect().top <= line) found = items[j].link;
+    }
+    if (found === current) return;
+    for (j = 0; j < links.length; j++) links[j].removeAttribute('aria-current');
+    if (found) found.setAttribute('aria-current', 'location');
+    current = found;
+  }
+  var waiting = false;
+  function queue(){
+    if (waiting) return;
+    waiting = true;
+    requestAnimationFrame(function(){ waiting = false; update(); });
+  }
+  window.addEventListener('scroll', queue, {passive:true});
+  window.addEventListener('resize', queue, {passive:true});
+  update();
+})();
 </script>
 </body>
 </html>
