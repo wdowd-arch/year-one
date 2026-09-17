@@ -142,8 +142,9 @@ tr.total td{font-weight:bold;border-bottom:2px solid var(--ink)}
 .toc li a:hover{color:var(--red)}
 .toc li .pg{color:var(--muted);font-size:.85rem}
 .toc .h{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:1.6em 0 .2em}
-.colophon{font-size:.9rem;line-height:1.55;max-width:34em;margin-left:auto;margin-right:auto}
-.address{font-size:.86rem;line-height:1.5;color:var(--ink);margin-top:1.4em}
+.colofoot{display:grid;grid-template-columns:1fr auto;gap:0 3em;align-items:start;max-width:44em;margin:0 auto 2em;text-align:left}
+.colophon{font-size:.9rem;line-height:1.55;margin:0}
+.address{font-size:.86rem;line-height:1.5;color:var(--ink);margin:0}
 .contents .share{justify-content:center}
 
 .signup{display:grid;grid-template-columns:7em 1fr;gap:1.4em;align-items:center;border-top:1px solid var(--soft);padding-top:1.4em;margin-top:1.6em}
@@ -190,6 +191,8 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   .story img{max-width:22em}
   .logos{grid-template-columns:repeat(2,1fr)}
   .toc{grid-template-columns:1fr}
+  .colofoot{grid-template-columns:1fr}
+  .address{margin-top:1.4em}
   .plate2{flex-direction:column;align-items:flex-start}
   .plate2 .tag{text-align:left}
 }
@@ -274,8 +277,10 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
       </ol>
     </div>
   </div>
-  <p class="colophon">Katie Ring photographed the cover, in which children recreate Archibald Willard’s “The Spirit of ’76,” the painting that hangs in Abbot Hall, during the Fourth of July horribles parade. This report covers the Independent’s first 12 months, from the launch on Sept. 15, 2025, to Sept. 15, 2026. The nameplate is a linocut by Nick Kent. The photographs throughout are the work of Ring, Paula Muller and Steve Rood, contributors this paper pays by assignment.</p>
-  <p class="address">The Marblehead Independent<br>74 Atlantic Ave., Suite 306<br>Marblehead, Massachusetts 01945<br>marbleheadindependent.com</p>
+  <div class="colofoot">
+    <p class="colophon">Katie Ring photographed the cover, in which children recreate Archibald Willard’s “The Spirit of ’76,” the painting that hangs in Abbot Hall, during the Fourth of July horribles parade. This report covers the Independent’s first 12 months, from the launch on Sept. 15, 2025, to Sept. 15, 2026. The nameplate is a linocut by Nick Kent. The photographs throughout are the work of Ring, Paula Muller and Steve Rood, contributors this paper pays by assignment.</p>
+    <p class="address">The Marblehead Independent<br>74 Atlantic Ave., Suite 306<br>Marblehead, Massachusetts 01945<br>marbleheadindependent.com</p>
+  </div>
   <div class="share">
     <span>Share</span>
     <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.marbleheadindependent.com%2Fyear-one%2F" rel="noopener">Facebook</a>
