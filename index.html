@@ -39,11 +39,11 @@ picture{display:block}
 a{color:var(--blue)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 /* links carried over from the printed report */
-h3 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
+h3 a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule)}
 h3 a:hover{color:var(--red);border-bottom-color:currentColor}
 a.figlink{display:block;flex:none;color:inherit;text-decoration:none}
 a.figlink:hover img{opacity:.78}
-figcaption a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
+figcaption a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule)}
 figcaption a:hover{color:var(--red);border-bottom-color:currentColor}
 p{margin:0 0 1.1em}
 .skip{position:absolute;left:-9999px}
@@ -212,7 +212,8 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   .logos{grid-template-columns:repeat(2,1fr)}
   .toc{grid-template-columns:1fr}
   .colofoot{grid-template-columns:1fr}
-  .address{margin-top:1.4em}
+  /* the share row below is centred; a flush-left address broke that axis on phones */
+  .address{margin-top:1.4em;text-align:center}
   .plate2{flex-direction:column;align-items:flex-start}
   /* nameplates must survive 200% text zoom without pushing the page: a clamp()
      floor is rem-based, so it grows with the zoom and stops protecting anything */
@@ -268,8 +269,16 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   .toc li a{padding:.7em 0;min-height:44px;display:flex;align-items:center}
   .toc li .pg{align-self:center}
   .share a,.share button{padding:.7em 1.1em;min-height:44px;display:inline-flex;align-items:center}
-  footer a{display:inline-flex;align-items:center;min-height:44px;margin-right:1.2em}
+  footer div{display:flex;flex-direction:column;align-items:flex-start}
+  footer a{display:inline-flex;align-items:center;min-height:44px;margin-right:0}
+  footer p{margin-top:.6em}
   .signup p a,.give p a{overflow-wrap:anywhere}
+  /* break-all split the address mid-word (…ways-to-suppo / rt); the <wbr> after the
+     slash gives it the one break a reader expects */
+  .help .give .url{word-break:normal;overflow-wrap:break-word}
+  /* the hyphens are break opportunities too, so it split at ‘ways-to-’; hold the path
+     segment together and the <wbr> after the slash is the only place left to break */
+  .help .give .url .seg{white-space:nowrap}
 
   /* FIX: max-width:22em on a story image is wider than the phone's text column */
   .story img{max-width:100%}
@@ -843,7 +852,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <div class="give">
     <a href="https://marbleheadindependent.com/ways-to-support"><img src="photos/qr-ways-to-support.png" width="330" height="330" alt="QR code for marbleheadindependent.com/ways-to-support" loading="lazy" decoding="async"></a>
     <div>
-      <p class="url"><a href="https://marbleheadindependent.com/ways-to-support" style="color:inherit;text-decoration:none">marbleheadindependent.com/ways-to-support</a></p>
+      <p class="url"><a href="https://marbleheadindependent.com/ways-to-support" style="color:inherit;text-decoration:none">marbleheadindependent.com/<wbr><span class="seg">ways-to-support</span></a></p>
       <p class="mcta"><a href="https://marbleheadindependent.com/ways-to-support">Support the Independent</a></p>
       <p>Or make a check out to The Marblehead Independent and send it to Suite 306, 74 Atlantic Ave., Marblehead, Massachusetts 01945. <a href="mailto:wdowd@marbleheadindependent.com">wdowd@marbleheadindependent.com</a> · 781-910-8658</p>
     </div>
