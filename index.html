@@ -145,12 +145,11 @@ tr.total td{font-weight:bold;border-bottom:2px solid var(--ink)}
 .toc li a{color:var(--ink);text-decoration:none;flex:1}
 .toc li a:hover{color:var(--red)}
 .toc li .pg{color:var(--muted);font-size:.85rem}
-.toc .h{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:1.6em 0 .2em}
 .coverfoot{max-width:60em;margin:0 auto 2.6em;padding:1.8rem 0 0}
 .colofoot{display:grid;grid-template-columns:1fr auto;gap:0 3em;align-items:start;text-align:left}
 .colophon{font-size:.9rem;line-height:1.55;margin:0}
 .address{font-size:.86rem;line-height:1.5;color:var(--ink);margin:0}
-.coverfoot .share{justify-content:flex-start;margin-top:1.6em}
+.coverfoot .share{justify-content:center;margin-top:2em}
 
 .signup{display:grid;grid-template-columns:7em minmax(0,1fr);gap:1.4em;align-items:center;border-top:1px solid var(--soft);padding-top:1.4em;margin-top:1.6em}
 .signup p a{word-break:break-all}
@@ -173,9 +172,9 @@ tr.total td{font-weight:bold;border-bottom:2px solid var(--ink)}
 .plate2 .np .b{display:block;font-weight:bold;font-size:1.25rem;line-height:1.05;color:var(--red);letter-spacing:.08em}
 .plate2 .tag{font-style:italic;font-size:.9rem;text-align:right;color:var(--ink)}
 
-.share{display:flex;flex-wrap:wrap;align-items:center;gap:.6em;margin:1.4em 0 0;font-size:.74rem}
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:.7em;margin:1.4em 0 0;font-size:.88rem}
 .share span{letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.share a,.share button{font-family:var(--serif);font-size:.74rem;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:2px;padding:.36em .8em;text-decoration:none;cursor:pointer}
+.share a,.share button{font-family:var(--serif);font-size:.88rem;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:2px;padding:.45em 1em;text-decoration:none;cursor:pointer}
 .share a:hover,.share button:hover{border-color:var(--red);color:var(--red)}
 
 footer{border-top:1px solid var(--soft);margin-top:1em;padding:1.8em 0 3em;font-size:.82rem;color:var(--muted)}
@@ -236,7 +235,8 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
     </div>
     <ul class="sections">
       <li><a href="#contents">Contents</a></li>
-      <li><a href="#editor">The reporting</a></li>
+      <li><a href="#editor">Editor’s note</a></li>
+      <li><a href="#override">Our reporting</a></li>
       <li><a href="#allyear">The year</a></li>
       <li><a href="#newsroom">The Independent</a></li>
       <li><a class="cta" href="#help">How to help</a></li>
@@ -273,7 +273,6 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
       </ol>
     </div>
     <div>
-      <p class="h">The Independent</p>
       <ol>
         <li><a href="#newsroom">the newsroom</a><span class="pg">12</span></li>
         <li><a href="#columnists">the columnists</a><span class="pg">13</span></li>
@@ -295,7 +294,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 <div class="coverfoot">
   <div class="colofoot">
     <p class="colophon">Katie Ring photographed the cover, in which children recreate Archibald Willard’s “The Spirit of ’76,” the painting that hangs in Abbot Hall, during the Fourth of July horribles parade. This report covers the Independent’s first 12 months, from the launch on Sept. 15, 2025, to Sept. 15, 2026. The nameplate is a linocut by Nick Kent. The photographs throughout are the work of Ring, Paula Muller and Steve Rood, contributors this paper pays by assignment.</p>
-    <p class="address">The Marblehead Independent<br>74 Atlantic Ave., Suite 306<br>Marblehead, Massachusetts 01945<br>marbleheadindependent.com</p>
+    <p class="address"><strong>The Marblehead Independent</strong><br>74 Atlantic Ave., Suite 306<br>Marblehead, Massachusetts 01945<br>marbleheadindependent.com</p>
   </div>
   <div class="share">
     <span>Share</span>
@@ -777,8 +776,9 @@ document.getElementById('copylink').addEventListener('click', function(){
   if (!nav) return;
   var groups = [
     ['contents','#contents'],
-    ['editor','#editor'], ['override','#editor'], ['tools','#editor'],
-    ['district','#editor'], ['agenda','#editor'],
+    ['editor','#editor'],
+    ['override','#override'], ['tools','#override'],
+    ['district','#override'], ['agenda','#override'],
     ['allyear','#allyear'], ['pictures','#allyear'],
     ['summer','#allyear'], ['winter','#allyear'],
     ['newsroom','#newsroom'], ['columnists','#newsroom'], ['record','#newsroom'],
