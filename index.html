@@ -146,10 +146,11 @@ tr.total td{font-weight:bold;border-bottom:2px solid var(--ink)}
 .toc li a:hover{color:var(--red)}
 .toc li .pg{color:var(--muted);font-size:.85rem}
 .toc .h{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:1.6em 0 .2em}
-.colofoot{display:grid;grid-template-columns:1fr auto;gap:0 3em;align-items:start;max-width:44em;margin:0 auto 2em;text-align:left}
+.coverfoot{max-width:60em;margin:0 auto 2.6em;padding:1.8rem 0 0}
+.colofoot{display:grid;grid-template-columns:1fr auto;gap:0 3em;align-items:start;text-align:left}
 .colophon{font-size:.9rem;line-height:1.55;margin:0}
 .address{font-size:.86rem;line-height:1.5;color:var(--ink);margin:0}
-.contents .share{justify-content:center}
+.coverfoot .share{justify-content:flex-start;margin-top:1.6em}
 
 .signup{display:grid;grid-template-columns:7em minmax(0,1fr);gap:1.4em;align-items:center;border-top:1px solid var(--soft);padding-top:1.4em;margin-top:1.6em}
 .signup p a{word-break:break-all}
@@ -181,6 +182,9 @@ footer{border-top:1px solid var(--soft);margin-top:1em;padding:1.8em 0 3em;font-
 footer div{max-width:var(--page);margin:0 auto;padding:0 1.4em}
 footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 
+@media (max-width:1080px){
+  .coverfoot{padding-left:1.4em;padding-right:1.4em}
+}
 @media (max-width:760px){
   body{font-size:17px}
   .topbar .bar{justify-content:center;gap:.35rem 1rem;padding:.6rem 1rem}
@@ -249,6 +253,8 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <img class="lino" src="photos/linocut.png" width="360" height="617" alt="Linocut of the Old Town House, the nameplate of The Marblehead Independent." fetchpriority="high" decoding="async">
   <p class="plate"><span class="a">The Marblehead</span><span class="b">INDEPENDENT</span></p>
 </header>
+
+<!-- ================================================== page 2 -->
 <section class="page contents" id="contents">
   <p class="kicker">Impact Report 2025–26</p>
   <h2>Contents</h2>
@@ -280,25 +286,26 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
       </ol>
     </div>
   </div>
-  <div class="colofoot">
-    <p class="colophon">Katie Ring photographed the cover, in which children recreate Archibald Willard’s “The Spirit of ’76,” the painting that hangs in Abbot Hall, during the Fourth of July horribles parade. This report covers the Independent’s first 12 months, from the launch on Sept. 15, 2025, to Sept. 15, 2026. The nameplate is a linocut by Nick Kent. The photographs throughout are the work of Ring, Paula Muller and Steve Rood, contributors this paper pays by assignment.</p>
-    <p class="address">The Marblehead Independent<br>74 Atlantic Ave., Suite 306<br>Marblehead, Massachusetts 01945<br>marbleheadindependent.com</p>
-  </div>
-  <div class="share">
-    <span>Share</span>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyearone.marbleheadindependent.com%2F" rel="noopener">Facebook</a>
-    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fyearone.marbleheadindependent.com%2F&amp;text=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent" rel="noopener">X</a>
-    <a href="https://bsky.app/intent/compose?text=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent%20https%3A%2F%2Fyearone.marbleheadindependent.com%2F" rel="noopener">Bluesky</a>
-    <a href="mailto:?subject=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent&amp;body=https%3A%2F%2Fyearone.marbleheadindependent.com%2F">Email</a>
-    <button type="button" id="copylink" data-url="https://yearone.marbleheadindependent.com/">Copy link</button>
-  </div>
 </section>
 
 <figure class="coverphoto">
   <img src="photos/cover-spirit-of-76.jpg" width="1100" height="634" alt="Children recreate Archibald Willard's 'The Spirit of '76' inside a handmade frame during the Fourth of July horribles parade." loading="lazy" decoding="async">
 </figure>
 
-<!-- ================================================== page 2 -->
+<div class="coverfoot">
+  <div class="colofoot">
+    <p class="colophon">Katie Ring photographed the cover, in which children recreate Archibald Willard’s “The Spirit of ’76,” the painting that hangs in Abbot Hall, during the Fourth of July horribles parade. This report covers the Independent’s first 12 months, from the launch on Sept. 15, 2025, to Sept. 15, 2026. The nameplate is a linocut by Nick Kent. The photographs throughout are the work of Ring, Paula Muller and Steve Rood, contributors this paper pays by assignment.</p>
+    <p class="address">The Marblehead Independent<br>74 Atlantic Ave., Suite 306<br>Marblehead, Massachusetts 01945<br>marbleheadindependent.com</p>
+  </div>
+  <div class="share">
+    <span>Share</span>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyearone.marbleheadindependent.com%2F" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fyearone.marbleheadindependent.com%2F&amp;text=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent" target="_blank" rel="noopener noreferrer">X</a>
+    <a href="https://bsky.app/intent/compose?text=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent%20https%3A%2F%2Fyearone.marbleheadindependent.com%2F" target="_blank" rel="noopener noreferrer">Bluesky</a>
+    <a target="_blank" href="mailto:?subject=Year%20one%3A%20Impact%20Report%20%E2%80%94%20The%20Marblehead%20Independent&amp;body=https%3A%2F%2Fyearone.marbleheadindependent.com%2F">Email</a>
+    <button type="button" id="copylink" data-url="https://yearone.marbleheadindependent.com/">Copy link</button>
+  </div>
+</div>
 
 <!-- ================================================== page 3 -->
 <section class="page" id="editor">
