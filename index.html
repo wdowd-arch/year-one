@@ -269,7 +269,8 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   .toc li a{padding:.7em 0;min-height:44px;display:flex;align-items:center}
   .toc li .pg{align-self:center}
   .share a,.share button{padding:.7em 1.1em;min-height:44px;display:inline-flex;align-items:center}
-  footer div{display:flex;flex-direction:column;align-items:flex-start}
+  /* four links two-by-two: one line wrapped 3 + 1, one per line stood 283px tall */
+  footer nav{display:grid;grid-template-columns:auto auto;justify-content:start;gap:0 2em;align-items:center}
   footer a{display:inline-flex;align-items:center;min-height:44px;margin-right:0}
   footer p{margin-top:.6em}
   .signup p a,.give p a{overflow-wrap:anywhere}
@@ -299,7 +300,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   .signup > a,.help .give > a{display:none}
   .signup,.help .give{grid-template-columns:1fr;gap:.9em}
   .mcta{display:block;margin:.9em 0 0}
-  .mcta a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+  .mcta a{display:flex;align-items:center;justify-content:center;min-height:44px;
     padding:.6em 1.2em;border:1px solid var(--red);border-radius:2px;color:var(--red);
     font-weight:bold;text-decoration:none;font-size:.95rem}
 }
@@ -870,10 +871,12 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 
 <footer>
   <div>
-    <a href="https://www.marbleheadindependent.com">The Marblehead Independent</a>
-    <a href="https://www.marbleheadindependent.com/ways-to-support">Ways to support</a>
-    <a href="#contents">Contents</a>
-    <a href="#top">Back to the top</a>
+    <nav aria-label="Footer">
+      <a href="https://www.marbleheadindependent.com">The Marblehead Independent</a>
+      <a href="https://www.marbleheadindependent.com/ways-to-support">Ways to support</a>
+      <a href="#contents">Contents</a>
+      <a href="#top">Back to the top</a>
+    </nav>
     <p>&copy; 2026 The Marblehead Independent. All rights reserved.</p>
   </div>
 </footer>
