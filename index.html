@@ -35,6 +35,7 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
 img{max-width:100%;height:auto;display:block}
+picture{display:block}
 a{color:var(--blue)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 p{margin:0 0 1.1em}
@@ -54,7 +55,7 @@ p{margin:0 0 1.1em}
 .topbar .sections a.cta{color:var(--red)}
 
 /* ---------- pages ---------- */
-.page{max-width:var(--page);margin:0 auto;padding:3.4em 1.4em 2.6em;scroll-margin-top:4em}
+.page{max-width:var(--page);margin:0 auto;padding:3.4em 1.4em 2.6em;scroll-margin-top:calc(var(--navh,4em) + 1rem)}
 .page + .page{border-top:1px solid var(--soft)}
 .kicker{font-size:.72rem;font-weight:bold;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin:0 0 .5em}
 h2{font-size:clamp(1.6rem,3.6vw,2.15rem);line-height:1.15;margin:0 0 .5em;padding-bottom:.35em;border-bottom:1px solid var(--rule);letter-spacing:-.008em}
@@ -85,6 +86,7 @@ figcaption{font-size:.8rem;line-height:1.45;color:var(--muted);margin-top:.5em}
 .pull{font-style:italic;font-size:1.12rem;text-align:center;max-width:30em;margin:2em auto 0;line-height:1.5}
 
 table{width:100%;border-collapse:collapse;margin:1.2em 0 1.6em;font-size:.95rem}
+.tablescroll:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 th{text-align:left;font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;color:var(--red);border-bottom:1px solid var(--ink);padding:.5em .3em}
 td{padding:.55em .3em;border-bottom:1px solid var(--soft);vertical-align:top}
 .num{text-align:right;white-space:nowrap}
@@ -172,6 +174,7 @@ tr.total td{font-weight:bold;border-bottom:2px solid var(--ink)}
 .plate2 .np .b{display:block;font-weight:bold;font-size:1.25rem;line-height:1.05;color:var(--red);letter-spacing:.08em}
 .plate2 .tag{font-style:italic;font-size:.9rem;text-align:right;color:var(--ink)}
 
+.mcta{display:none}
 .share{display:flex;flex-wrap:wrap;align-items:center;gap:.7em;margin:1.4em 0 0;font-size:.88rem}
 .share span{letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .share a,.share button{font-family:var(--serif);font-size:.88rem;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:2px;padding:.45em 1em;text-decoration:none;cursor:pointer}
@@ -204,7 +207,95 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   .colofoot{grid-template-columns:1fr}
   .address{margin-top:1.4em}
   .plate2{flex-direction:column;align-items:flex-start}
+  /* nameplates must survive 200% text zoom without pushing the page: a clamp()
+     floor is rem-based, so it grows with the zoom and stops protecting anything */
+  .plate2 .np{flex-wrap:wrap;min-width:0}
+  .plate2 .np .a,.plate2 .np .b{font-size:min(1.25rem,8vw)}
+  .cover h1{font-size:min(clamp(2.6rem,7vw,3.9rem),13vw)}
+  .toc li{flex-wrap:wrap}
+  .toc li a{min-width:0;overflow-wrap:break-word}
+  .colophon,.address{overflow-wrap:break-word}
+  .cover .plate .a{font-size:min(clamp(1.7rem,4.6vw,2.4rem),9.5vw)}
+  .cover .plate .b{font-size:min(clamp(1.9rem,5.4vw,2.8rem),9.5vw)}
+  /* let these tracks shrink rather than push the page at large text sizes */
+  .people{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .colofoot{grid-template-columns:minmax(0,1fr)}
+  .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* break only words that would otherwise overflow; prose wrapping is untouched */
+  h2,h3,.kicker,.subkicker,.logos figcaption,.people .nm,.help h2{overflow-wrap:break-word}
   .plate2 .tag{text-align:left}
+}
+
+/* ---------- mobile reading experience (phones only; desktop above 760px is untouched) ---------- */
+@media (max-width:760px){
+  /* gutters ~20px, and a tighter vertical rhythm so 19 sections are not mostly whitespace */
+  .page{padding:2.25rem 1.25rem 2rem}
+  .page{padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+  .cover{padding-top:2rem}
+  .cover h1{margin-bottom:.35em}
+  .cover .plate{margin-bottom:1.1em}
+  .contents{padding-top:2rem}
+  .coverfoot{padding-left:1.25rem;padding-right:1.25rem;margin-bottom:2rem}
+  footer div{padding:0 1.25rem}
+  footer{padding-bottom:calc(3em + env(safe-area-inset-bottom))}
+
+  /* one scrollable rail instead of a wrapped block: the wrapped bar stood 192px tall
+     at 320px, a third of the screen, and buried every anchor destination beneath it */
+  .topbar .bar{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:0;
+    padding:.35rem 0;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;-ms-overflow-style:none}
+  .topbar .bar::-webkit-scrollbar{display:none}
+  .topbar .site,.topbar .sections{flex-wrap:nowrap;gap:0;flex:0 0 auto}
+  .topbar .site{padding-left:max(1rem,env(safe-area-inset-left))}
+  .topbar .sections li{flex:0 0 auto;scroll-snap-align:start}
+  .topbar .sections li:last-child{padding-right:max(1rem,env(safe-area-inset-right))}
+  .topbar a{display:inline-flex;align-items:center;min-height:44px;padding:0 .7rem;border-bottom:0}
+  /* keep the current-section cue without the border-bottom the rail drops */
+  .topbar .sections a[aria-current]{color:var(--red)}
+  /* a hint that the rail carries on past the edge (sticky is already a containing block) */
+  .topbar::after{content:"";position:absolute;top:0;right:0;bottom:1px;width:2rem;
+    pointer-events:none;background:linear-gradient(to right,rgba(255,255,255,0),var(--canvas))}
+
+  /* anchor clearance is handled globally from the measured --navh */
+  .toc li{padding:0}
+  .toc li a{padding:.7em 0;min-height:44px;display:flex;align-items:center}
+  .toc li .pg{align-self:center}
+  .share a,.share button{padding:.7em 1.1em;min-height:44px;display:inline-flex;align-items:center}
+  footer a{display:inline-flex;align-items:center;min-height:44px;margin-right:1.2em}
+  .signup p a,.give p a{overflow-wrap:anywhere}
+
+  /* FIX: max-width:22em on a story image is wider than the phone's text column */
+  .story img{max-width:100%}
+
+  /* FIX: nowrap photo credits forced the two-column grid wider than the page */
+  .grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .credit{white-space:normal}
+
+  /* tables keep their shape; only the type gives a little */
+  figcaption{font-size:.85rem;line-height:1.5}
+  /* a table that cannot fit owns its own scrolling rather than moving the page */
+  .tablescroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1.2em 0 1.6em}
+  .tablescroll > table{margin:0}
+  table{font-size:.88rem}
+  th,td{padding:.5em .25em}
+
+  /* QR codes are for scanning from another device; on the phone give the link itself */
+  .signup > a,.help .give > a{display:none}
+  .signup,.help .give{grid-template-columns:1fr;gap:.9em}
+  .mcta{display:block;margin:.9em 0 0}
+  .mcta a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+    padding:.6em 1.2em;border:1px solid var(--red);border-radius:2px;color:var(--red);
+    font-weight:bold;text-decoration:none;font-size:.95rem}
+}
+
+/* ---------- narrow phones ---------- */
+@media (max-width:480px){
+  /* three-up photography and headshots are too small to read at this width */
+  .grid3{grid-template-columns:1fr}
+  .people.three{grid-template-columns:repeat(2,1fr)}
+  .story img{max-width:100%}
+  .help .give .url{font-size:1.15rem}
+  .cover .plate .b{letter-spacing:.04em}
 }
 
 /* ---------- print: it began as a printed report, so let it print ---------- */
@@ -288,7 +379,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 </section>
 
 <figure class="coverphoto">
-  <img src="photos/cover-spirit-of-76.jpg" width="1100" height="634" alt="Children recreate Archibald Willard's 'The Spirit of '76' inside a handmade frame during the Fourth of July horribles parade." loading="lazy" decoding="async">
+  <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/cover-spirit-of-76-480.webp 480w, photos/m/cover-spirit-of-76-960.webp 960w" sizes="100vw"><img src="photos/cover-spirit-of-76.jpg" width="1100" height="634" alt="Children recreate Archibald Willard's 'The Spirit of '76' inside a handmade frame during the Fourth of July horribles parade." loading="lazy" decoding="async"></picture>
 </figure>
 
 <div class="coverfoot">
@@ -311,7 +402,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <p class="kicker">From the editor</p>
   <h2>The whole story, dry parts included</h2>
   <figure class="wide">
-    <img src="photos/p03-town-meeting-warrant.jpg" width="1304" height="352" alt="A voter reads the warrant during Town Meeting." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p03-town-meeting-warrant-480.webp 480w, photos/m/p03-town-meeting-warrant-960.webp 960w" sizes="100vw"><img src="photos/p03-town-meeting-warrant.jpg" width="1304" height="352" alt="A voter reads the warrant during Town Meeting." loading="lazy" decoding="async"></picture>
     <figcaption>A voter reads the warrant at Town Meeting on May 4. <span class="credit">Independent photo / Katie Ring</span></figcaption>
   </figure>
   <p class="dropcap">A year ago this newsroom was one reporter in a Humphrey Street basement, a linocut of the Old Town House and a promise to cover Marblehead as fully and fairly as one person could. I started the Independent because I love this town and love writing about it. I have covered Marblehead in some capacity since 2012, and after 14 years, I did not want to stop.</p>
@@ -331,7 +422,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <h2>Holding the town to account</h2>
   <p class="deck">Voters approved a $17.3 million override in June. We published the numbers before the vote, not after.</p>
   <figure class="wide">
-    <img src="photos/p04-state-of-the-town.jpg" width="980" height="351" alt="Select Board members and the town administrator listen during the State of the Town in Abbot Hall." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p04-state-of-the-town-480.webp 480w, photos/m/p04-state-of-the-town-960.webp 960w" sizes="100vw"><img src="photos/p04-state-of-the-town.jpg" width="980" height="351" alt="Select Board members and the town administrator listen during the State of the Town in Abbot Hall." loading="lazy" decoding="async"></picture>
     <figcaption>Select Board members Dan Fox and Alexa Singer, now off the board, and Town Administrator Thatcher Kezer listen during the State of the Town in Abbot Hall. <span class="credit">Independent photo / Katie Ring</span></figcaption>
   </figure>
   <div class="twocol">
@@ -391,7 +482,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <h2>The race money explained, before anyone voted</h2>
   <p class="deck">Congressman Seth Moulton gave up the seat to run for the Senate. Six Democrats ran to replace him. More than $10 million would be spent in the primary.</p>
   <figure class="wide">
-    <img src="photos/p06-6th-district-forum.jpg" width="980" height="291" alt="Dan Koh, Mariah Lancaster and Tram Nguyen seated at a Democratic primary forum." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p06-6th-district-forum-480.webp 480w, photos/m/p06-6th-district-forum-960.webp 960w" sizes="100vw"><img src="photos/p06-6th-district-forum.jpg" width="980" height="291" alt="Dan Koh, Mariah Lancaster and Tram Nguyen seated at a Democratic primary forum." loading="lazy" decoding="async"></picture>
     <figcaption>Dan Koh, Mariah Lancaster and Tram Nguyen at a Democratic primary forum in Gordon Hall at Salem State University on June 17. Koh and Nguyen finished first and second. <span class="credit">Independent photo / Steve Rood</span></figcaption>
   </figure>
   <div class="twocol">
@@ -423,7 +514,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   </article>
 
   <article class="story">
-    <img src="photos/p07-littlest-islanders.jpg" width="438" height="282" alt="A historical photograph of children at the Children's Island Sanitarium with handwritten captions." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p07-littlest-islanders-480.webp 438w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p07-littlest-islanders.jpg" width="438" height="282" alt="A historical photograph of children at the Children's Island Sanitarium with handwritten captions." loading="lazy" decoding="async"></picture>
     <div>
       <h3>“The littlest islanders”</h3>
       <p>Newly donated photographs from the Children’s Island Sanitarium, which took in children from Boston’s poorest neighborhoods between 1886 and 1946. Handwritten captions beneath the prints keep their names.</p>
@@ -432,7 +523,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   </article>
 
   <article class="story">
-    <img src="photos/p07-bond-coffee.jpg" width="876" height="564" alt="The two founders of Bond Coffee Roasters standing with bags of coffee." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p07-bond-coffee-480.webp 480w, photos/m/p07-bond-coffee-960.webp 876w" sizes="100vw"><img src="photos/p07-bond-coffee.jpg" width="876" height="564" alt="The two founders of Bond Coffee Roasters standing with bags of coffee." loading="lazy" decoding="async"></picture>
     <div>
       <h3>“Coffee company brewing in Marblehead”</h3>
       <p>Two neighbors in the Historic District started out roasting green beans on a stovetop. Bond Coffee Roasters now runs from the block they live on and delivers by Japanese mini truck.</p>
@@ -441,7 +532,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   </article>
 
   <article class="story">
-    <img src="photos/p07-riverside-drive-lights.jpg" width="438" height="282" alt="Trees wrapped in white Christmas lights along Riverside Drive at night." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p07-riverside-drive-lights-480.webp 438w" sizes="100vw"><img src="photos/p07-riverside-drive-lights.jpg" width="438" height="282" alt="Trees wrapped in white Christmas lights along Riverside Drive at night." loading="lazy" decoding="async"></picture>
     <div>
       <h3>“The Marblehead block where going dark for Christmas is not an option”</h3>
       <p>A playful contest between two neighbors on Riverside Drive became a managed ritual, complete with tongue-in-cheek rule memos from self-appointed enforcers and a line of cars idling past each night.</p>
@@ -450,7 +541,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   </article>
 
   <article class="story">
-    <img src="photos/p07-niko-kuzmina.jpg" width="438" height="282" alt="Niko Kuzmina grinning in a Marblehead Police polo at his sendoff." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p07-niko-kuzmina-480.webp 438w" sizes="100vw"><img src="photos/p07-niko-kuzmina.jpg" width="438" height="282" alt="Niko Kuzmina grinning in a Marblehead Police polo at his sendoff." loading="lazy" decoding="async"></picture>
     <div>
       <h3>“A sendoff for a Marblehead fixture”</h3>
       <p>Niko Kuzmina worked a grocery counter here for 23 years. When his mother’s death prompted a move south, coaches, police officers and shop owners filled the Warwick and handed him a police polo with his own name on it.</p>
@@ -459,7 +550,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   </article>
 
   <article class="story">
-    <img src="photos/p07-roast-beef.jpg" width="438" height="282" alt="A tray of North Shore roast beef sandwiches and fries." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p07-roast-beef-480.webp 438w" sizes="100vw"><img src="photos/p07-roast-beef.jpg" width="438" height="282" alt="A tray of North Shore roast beef sandwiches and fries." loading="lazy" decoding="async"></picture>
     <div>
       <h3>“Pastries, roast beef put Marblehead Gen Z grads on the map”</h3>
       <p>Lily Tapper and Max Scivetti turned hometown recipes into restaurants in Swampscott and Beverly. Scivetti first made North Shore roast beef in his college apartment, with sauce his mother mailed him.</p>
@@ -474,13 +565,13 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <h2>Catching Marblehead light</h2>
   <p class="deck">Accountability reporting is half of it. The other half is the town through its own calendar, photographed all year by Katie Ring, Paula Muller and Steve Rood.</p>
   <figure class="wide">
-    <img src="photos/p08-blizzard-the-barnacle.jpg" width="980" height="654" alt="A wave breaks over The Barnacle restaurant during a blizzard." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p08-blizzard-the-barnacle-480.webp 480w, photos/m/p08-blizzard-the-barnacle-960.webp 960w" sizes="100vw"><img src="photos/p08-blizzard-the-barnacle.jpg" width="980" height="654" alt="A wave breaks over The Barnacle restaurant during a blizzard." loading="lazy" decoding="async"></picture>
     <figcaption>Feb. 23. The blizzard drives waves over The Barnacle at high tide. Readers shared Paula Muller’s photograph through the town’s feeds and liked it more than 1,000 times, more than any picture we ran all year. <span class="credit">Independent photo / Paula Muller</span></figcaption>
   </figure>
   <div class="grid3">
-    <figure><img src="photos/p08-memorial-day-taps.jpg" width="520" height="274" alt="John Collins plays taps beside a memorial stone." loading="lazy" decoding="async"><figcaption>Memorial Day. John Collins plays taps. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
-    <figure><img src="photos/p08-graduation-caps.jpg" width="520" height="274" alt="Graduation caps thrown in the air." loading="lazy" decoding="async"><figcaption>Graduation day. Caps in the air. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
-    <figure><img src="photos/p08-festival-boats.jpg" width="520" height="274" alt="Children launching small sailboats at the Festival of Arts." loading="lazy" decoding="async"><figcaption>July 3. Boats at the Festival of Arts. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p08-memorial-day-taps-480.webp 480w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p08-memorial-day-taps.jpg" width="520" height="274" alt="John Collins plays taps beside a memorial stone." loading="lazy" decoding="async"></picture><figcaption>Memorial Day. John Collins plays taps. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p08-graduation-caps-480.webp 480w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p08-graduation-caps.jpg" width="520" height="274" alt="Graduation caps thrown in the air." loading="lazy" decoding="async"></picture><figcaption>Graduation day. Caps in the air. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p08-festival-boats-480.webp 480w" sizes="100vw"><img src="photos/p08-festival-boats.jpg" width="520" height="274" alt="Children launching small sailboats at the Festival of Arts." loading="lazy" decoding="async"></picture><figcaption>July 3. Boats at the Festival of Arts. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
   </div>
   <div class="twocol">
     <p>Every photograph in these pages was made by Katie Ring, Paula Muller or Steve Rood, who between them bring more than 100 years behind a camera to a town of 20,000.</p>
@@ -494,12 +585,12 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <h2>There when it happened</h2>
   <p class="deck">A working news team means someone is there when it happens.</p>
   <div class="grid2">
-    <figure><img src="photos/p09-christmas-walk-detail.jpg" width="660" height="412" alt="Two patrolmen in high-visibility jackets on Christmas Walk detail." loading="lazy" decoding="async"><figcaption>December. Patrolmen Christian Hennigar and Owen Picariello on Christmas Walk detail. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
-    <figure><img src="photos/p09-pickett-street-snow.jpg" width="660" height="412" alt="A man shovels snow during a winter storm." loading="lazy" decoding="async"><figcaption>Jan. 25. Eli Pearlstein shovels Pickett Street during a winter storm. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
-    <figure><img src="photos/p09-town-meeting-microphone.jpg" width="660" height="412" alt="Jeanne Lambkin speaks at a microphone at Town Meeting." loading="lazy" decoding="async"><figcaption>May 4. Jeanne Lambkin takes the microphone at Town Meeting; 40 warrant articles in one night. <span class="credit">Independent photo / Katie Ring</span></figcaption></figure>
-    <figure><img src="photos/p09-ladder-truck.jpg" width="660" height="412" alt="A fire department ladder truck sprays water over a street full of children." loading="lazy" decoding="async"><figcaption>Summer. A ladder truck cools a street full of children. <span class="credit">Independent photo / Katie Ring</span></figcaption></figure>
-    <figure><img src="photos/p09-memorial-day-wreaths.jpg" width="660" height="412" alt="A Marine sergeant sets memorial wreaths on the green." loading="lazy" decoding="async"><figcaption>Memorial Day. Marine Corps Sgt. Nathaniel “Nat” Grader sets the wreaths on the green. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
-    <figure><img src="photos/p09-post-office-250.jpg" width="660" height="412" alt="Officials gather outside the Marblehead post office for a proclamation." loading="lazy" decoding="async"><figcaption>July 2. A Select Board proclamation at the post office marked 250 years of mail. Franklin named the town’s first postmaster in 1775. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p09-christmas-walk-detail-480.webp 480w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p09-christmas-walk-detail.jpg" width="660" height="412" alt="Two patrolmen in high-visibility jackets on Christmas Walk detail." loading="lazy" decoding="async"></picture><figcaption>December. Patrolmen Christian Hennigar and Owen Picariello on Christmas Walk detail. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p09-pickett-street-snow-480.webp 480w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p09-pickett-street-snow.jpg" width="660" height="412" alt="A man shovels snow during a winter storm." loading="lazy" decoding="async"></picture><figcaption>Jan. 25. Eli Pearlstein shovels Pickett Street during a winter storm. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p09-town-meeting-microphone-480.webp 480w" sizes="100vw"><img src="photos/p09-town-meeting-microphone.jpg" width="660" height="412" alt="Jeanne Lambkin speaks at a microphone at Town Meeting." loading="lazy" decoding="async"></picture><figcaption>May 4. Jeanne Lambkin takes the microphone at Town Meeting; 40 warrant articles in one night. <span class="credit">Independent photo / Katie Ring</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p09-ladder-truck-480.webp 480w" sizes="100vw"><img src="photos/p09-ladder-truck.jpg" width="660" height="412" alt="A fire department ladder truck sprays water over a street full of children." loading="lazy" decoding="async"></picture><figcaption>Summer. A ladder truck cools a street full of children. <span class="credit">Independent photo / Katie Ring</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p09-memorial-day-wreaths-480.webp 480w" sizes="100vw"><img src="photos/p09-memorial-day-wreaths.jpg" width="660" height="412" alt="A Marine sergeant sets memorial wreaths on the green." loading="lazy" decoding="async"></picture><figcaption>Memorial Day. Marine Corps Sgt. Nathaniel “Nat” Grader sets the wreaths on the green. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p09-post-office-250-480.webp 480w" sizes="100vw"><img src="photos/p09-post-office-250.jpg" width="660" height="412" alt="Officials gather outside the Marblehead post office for a proclamation." loading="lazy" decoding="async"></picture><figcaption>July 2. A Select Board proclamation at the post office marked 250 years of mail. Franklin named the town’s first postmaster in 1775. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
   </div>
 </section>
 
@@ -508,13 +599,13 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <p class="kicker">High summer</p>
   <h2>The season the whole town turns out</h2>
   <figure class="wide">
-    <img src="photos/p10-fireworks-marblehead-light.jpg" width="980" height="675" alt="Fireworks burst beside the illuminated Marblehead Light." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p10-fireworks-marblehead-light-480.webp 480w, photos/m/p10-fireworks-marblehead-light-960.webp 960w" sizes="100vw"><img src="photos/p10-fireworks-marblehead-light.jpg" width="980" height="675" alt="Fireworks burst beside the illuminated Marblehead Light." loading="lazy" decoding="async"></picture>
     <figcaption>Fireworks over Marblehead Light on the Fourth of July. The town has marked the day this way for longer than anyone photographing it can remember. <span class="credit">Independent photo / Steve Rood</span></figcaption>
   </figure>
   <div class="grid3">
-    <figure><img src="photos/p10-gerry-5-pumper.jpg" width="440" height="295" alt="The Gerry 5 hand pumper beside Redd's Pond." loading="lazy" decoding="async"><figcaption>June 24. The Gerry 5 pumper draws a crowd at Redd’s Pond. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
-    <figure><img src="photos/p10-small-sailors.jpg" width="440" height="295" alt="Three children in a boat decorated for the Fourth of July." loading="lazy" decoding="async"><figcaption>July 4. Three small sailors in a decorated boat. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
-    <figure><img src="photos/p10-musket-volley.jpg" width="440" height="295" alt="Reenactors fire a musket volley beside the harbor." loading="lazy" decoding="async"><figcaption>A musket volley beside the harbor. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p10-gerry-5-pumper-480.webp 440w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p10-gerry-5-pumper.jpg" width="440" height="295" alt="The Gerry 5 hand pumper beside Redd's Pond." loading="lazy" decoding="async"></picture><figcaption>June 24. The Gerry 5 pumper draws a crowd at Redd’s Pond. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p10-small-sailors-480.webp 440w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p10-small-sailors.jpg" width="440" height="295" alt="Three children in a boat decorated for the Fourth of July." loading="lazy" decoding="async"></picture><figcaption>July 4. Three small sailors in a decorated boat. <span class="credit">Independent photo / Steve Rood</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p10-musket-volley-480.webp 440w" sizes="100vw"><img src="photos/p10-musket-volley.jpg" width="440" height="295" alt="Reenactors fire a musket volley beside the harbor." loading="lazy" decoding="async"></picture><figcaption>A musket volley beside the harbor. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
   </div>
   <p>Summer is when the whole town comes outside, and we try to be there with it. These are the days people remember, and they belong in the paper as much as any Town Meeting vote.</p>
 </section>
@@ -525,13 +616,13 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <h2>A town that does not close for the winter</h2>
   <p class="deck">Some of Marblehead’s biggest traditions happen in the cold. So does its worst weather, which is when a local paper earns its keep.</p>
   <figure class="wide">
-    <img src="photos/p11-christmas-walk.jpg" width="900" height="450" alt="A crowd fills Washington Street during the Christmas Walk." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p11-christmas-walk-480.webp 480w, photos/m/p11-christmas-walk-960.webp 900w" sizes="100vw"><img src="photos/p11-christmas-walk.jpg" width="900" height="450" alt="A crowd fills Washington Street during the Christmas Walk." loading="lazy" decoding="async"></picture>
     <figcaption>Washington Street minutes after Santa came ashore at the 2025 Christmas Walk. <span class="credit">Independent photo / Paula Muller</span></figcaption>
   </figure>
   <div class="grid3">
-    <figure><img src="photos/p11-epiphany-bonfire.jpg" width="520" height="361" alt="Three firefighters lit by the Epiphany bonfire." loading="lazy" decoding="async"><figcaption>Jan. 6. Firefighters Liam Gilliland, Aidan Gillis and Chris McGrath at the Epiphany bonfire, Riverhead Beach. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
-    <figure><img src="photos/p11-santa-lobster-boat.jpg" width="648" height="450" alt="Santa arrives by lobster boat with garland on the bow." loading="lazy" decoding="async"><figcaption>Santa arrives by lobster boat, garland on the bow, to open the Walk. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
-    <figure><img src="photos/p11-wreath-circle-st.jpg" width="520" height="361" alt="A wreath on a red door rimed with snow." loading="lazy" decoding="async"><figcaption>Feb. 23. A wreath on the door of 22 Circle St., rimed with wind-driven snow. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p11-epiphany-bonfire-480.webp 480w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p11-epiphany-bonfire.jpg" width="520" height="361" alt="Three firefighters lit by the Epiphany bonfire." loading="lazy" decoding="async"></picture><figcaption>Jan. 6. Firefighters Liam Gilliland, Aidan Gillis and Chris McGrath at the Epiphany bonfire, Riverhead Beach. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p11-santa-lobster-boat-480.webp 480w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p11-santa-lobster-boat.jpg" width="648" height="450" alt="Santa arrives by lobster boat with garland on the bow." loading="lazy" decoding="async"></picture><figcaption>Santa arrives by lobster boat, garland on the bow, to open the Walk. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p11-wreath-circle-st-480.webp 480w" sizes="100vw"><img src="photos/p11-wreath-circle-st.jpg" width="520" height="361" alt="A wreath on a red door rimed with snow." loading="lazy" decoding="async"></picture><figcaption>Feb. 23. A wreath on the door of 22 Circle St., rimed with wind-driven snow. <span class="credit">Independent photo / Paula Muller</span></figcaption></figure>
   </div>
   <p>Winter is when readership is least optional. Closures, outages, parking bans, whether the causeway is passable at high tide — in a coastal town these are not soft stories, and they are the ones people search for at six in the morning. The same season carries the Christmas Walk and the Epiphany bonfire that hundreds turn out for, which is the argument for covering both halves: a reader who checks the storm page in February is the reader who opens the Walk photographs in December.</p>
 </section>
@@ -541,20 +632,20 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <p class="kicker">The newsroom</p>
   <h2>The people who make the Independent</h2>
   <figure class="wide">
-    <img src="photos/p12-newsroom-picnic.jpg" width="1316" height="516" alt="The news team gathered for a group photograph at a harbor picnic." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p12-newsroom-picnic-480.webp 480w, photos/m/p12-newsroom-picnic-960.webp 960w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/p12-newsroom-picnic.jpg" width="1316" height="516" alt="The news team gathered for a group photograph at a harbor picnic." loading="lazy" decoding="async"></picture>
     <figcaption>Most of the news team met face to face for the first time at a harbor picnic in late August, just before our first birthday. <span class="credit">Independent photo / Steve Rood</span></figcaption>
   </figure>
   <div class="people">
-    <figure><img src="photos/staff-chris-stevens.jpg" width="450" height="600" alt="Chris Stevens" loading="lazy" decoding="async"><figcaption><p class="nm">Chris Stevens</p><p class="role">Second in command, editorial board</p><p class="bio">Edited the Marblehead Reporter for years. Covered Lynn for The Daily Item.</p></figcaption></figure>
-    <figure><img src="photos/staff-nell-escobar-coakley.jpg" width="450" height="600" alt="Nell Escobar Coakley" loading="lazy" decoding="async"><figcaption><p class="nm">Nell Escobar Coakley</p><p class="role">Editorial board</p><p class="bio">A veteran North Shore editor; the standard a story is held to.</p></figcaption></figure>
-    <figure><img src="photos/staff-marc-grazado.jpg" width="450" height="600" alt="Marc Grazado" loading="lazy" decoding="async"><figcaption><p class="nm">Marc Grazado</p><p class="role">Reporter</p><p class="bio">A Marblehead kid, now studying media at UMass Amherst.</p></figcaption></figure>
-    <figure><img src="photos/staff-wendall-waters.jpg" width="450" height="600" alt="Wendall Waters" loading="lazy" decoding="async"><figcaption><p class="nm">Wendall Waters</p><p class="role">Reporter</p><p class="bio">Decades of North Shore reporting behind every piece.</p></figcaption></figure>
-    <figure><img src="photos/staff-joanna-shellenberger.jpg" width="450" height="600" alt="Joanna Shellenberger" loading="lazy" decoding="async"><figcaption><p class="nm">Joanna Shellenberger</p><p class="role">Business adviser</p><p class="bio">Finance and operations. No say in coverage.</p></figcaption></figure>
-    <figure><img src="photos/staff-nick-kent.jpg" width="450" height="600" alt="Nick Kent" loading="lazy" decoding="async"><figcaption><p class="nm">Nick Kent</p><p class="role">Graphic design</p><p class="bio">Our go-to designer, and the brains behind the linocut nameplate.</p></figcaption></figure>
-    <figure><img src="photos/staff-paula-muller.jpg" width="450" height="600" alt="Paula Muller" loading="lazy" decoding="async"><figcaption><p class="nm">Paula Muller</p><p class="role">Photographer</p><p class="bio">Forty years a news photographer. Contributor to the Times and AP.</p></figcaption></figure>
-    <figure><img src="photos/staff-steve-rood.jpg" width="450" height="600" alt="Steve Rood" loading="lazy" decoding="async"><figcaption><p class="nm">Steve “Stevo” Rood</p><p class="role">Photographer</p><p class="bio">Forty years shooting concerts, from the Fools to the Stones.</p></figcaption></figure>
-    <figure><img src="photos/staff-katie-ring.jpg" width="450" height="600" alt="Katie Ring" loading="lazy" decoding="async"><figcaption><p class="nm">Katie Ring</p><p class="role">Photographer, columnist</p><p class="bio">Newhouse-trained. Writes Marblehead Morsels.</p></figcaption></figure>
-    <figure><img src="photos/staff-will-dowd.jpg" width="450" height="600" alt="Will Dowd" loading="lazy" decoding="async"><figcaption><p class="nm">Will Dowd</p><p class="role">Founder and editor</p><p class="bio">Started reporting here in 2012 and has failed spectacularly at leaving.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-chris-stevens-480.webp 450w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/staff-chris-stevens.jpg" width="450" height="600" alt="Chris Stevens" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Chris Stevens</p><p class="role">Second in command, editorial board</p><p class="bio">Edited the Marblehead Reporter for years. Covered Lynn for The Daily Item.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-nell-escobar-coakley-480.webp 450w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/staff-nell-escobar-coakley.jpg" width="450" height="600" alt="Nell Escobar Coakley" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Nell Escobar Coakley</p><p class="role">Editorial board</p><p class="bio">A veteran North Shore editor; the standard a story is held to.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-marc-grazado-480.webp 450w" sizes="100vw"><img src="photos/staff-marc-grazado.jpg" width="450" height="600" alt="Marc Grazado" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Marc Grazado</p><p class="role">Reporter</p><p class="bio">A Marblehead kid, now studying media at UMass Amherst.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-wendall-waters-480.webp 450w" sizes="100vw"><img src="photos/staff-wendall-waters.jpg" width="450" height="600" alt="Wendall Waters" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Wendall Waters</p><p class="role">Reporter</p><p class="bio">Decades of North Shore reporting behind every piece.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-joanna-shellenberger-480.webp 450w" sizes="100vw"><img src="photos/staff-joanna-shellenberger.jpg" width="450" height="600" alt="Joanna Shellenberger" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Joanna Shellenberger</p><p class="role">Business adviser</p><p class="bio">Finance and operations. No say in coverage.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-nick-kent-480.webp 450w" sizes="100vw"><img src="photos/staff-nick-kent.jpg" width="450" height="600" alt="Nick Kent" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Nick Kent</p><p class="role">Graphic design</p><p class="bio">Our go-to designer, and the brains behind the linocut nameplate.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-paula-muller-480.webp 450w" sizes="100vw"><img src="photos/staff-paula-muller.jpg" width="450" height="600" alt="Paula Muller" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Paula Muller</p><p class="role">Photographer</p><p class="bio">Forty years a news photographer. Contributor to the Times and AP.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-steve-rood-480.webp 450w" sizes="100vw"><img src="photos/staff-steve-rood.jpg" width="450" height="600" alt="Steve Rood" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Steve “Stevo” Rood</p><p class="role">Photographer</p><p class="bio">Forty years shooting concerts, from the Fools to the Stones.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-katie-ring-480.webp 450w" sizes="100vw"><img src="photos/staff-katie-ring.jpg" width="450" height="600" alt="Katie Ring" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Katie Ring</p><p class="role">Photographer, columnist</p><p class="bio">Newhouse-trained. Writes Marblehead Morsels.</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/staff-will-dowd-480.webp 450w" sizes="100vw"><img src="photos/staff-will-dowd.jpg" width="450" height="600" alt="Will Dowd" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Will Dowd</p><p class="role">Founder and editor</p><p class="bio">Started reporting here in 2012 and has failed spectacularly at leaving.</p></figcaption></figure>
   </div>
 </section>
 
@@ -564,9 +655,9 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
   <h2>People writing about the thing they already do</h2>
   <p class="deck">Not one of them came to this from a newsroom. Each writes about Marblehead better than a visiting reporter could, because they live here.</p>
   <div class="people three">
-    <figure><img src="photos/columnist-ryan-park.jpg" width="450" height="600" alt="Ryan Park" loading="lazy" decoding="async"><figcaption><p class="nm">Ryan Park</p><p class="role">“Beneath the Blue”</p></figcaption></figure>
-    <figure><img src="photos/columnist-colleen-connor.jpg" width="450" height="600" alt="Colleen Connor" loading="lazy" decoding="async"><figcaption><p class="nm">Colleen Connor</p><p class="role">“Colleen’s Garden”</p></figcaption></figure>
-    <figure><img src="photos/columnist-theresa-milewski.jpg" width="450" height="600" alt="Theresa Myung Hee Milewski" loading="lazy" decoding="async"><figcaption><p class="nm">Theresa Myung Hee Milewski</p><p class="role">“Computers 101”</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/columnist-ryan-park-480.webp 450w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/columnist-ryan-park.jpg" width="450" height="600" alt="Ryan Park" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Ryan Park</p><p class="role">“Beneath the Blue”</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/columnist-colleen-connor-480.webp 450w" sizes="(max-width:480px) 100vw, 50vw"><img src="photos/columnist-colleen-connor.jpg" width="450" height="600" alt="Colleen Connor" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Colleen Connor</p><p class="role">“Colleen’s Garden”</p></figcaption></figure>
+    <figure><picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/columnist-theresa-milewski-480.webp 450w" sizes="100vw"><img src="photos/columnist-theresa-milewski.jpg" width="450" height="600" alt="Theresa Myung Hee Milewski" loading="lazy" decoding="async"></picture><figcaption><p class="nm">Theresa Myung Hee Milewski</p><p class="role">“Computers 101”</p></figcaption></figure>
   </div>
   <p class="dropcap" style="margin-top:1.8em">Ryan Park is a dentist who freedives, and <strong>“Beneath the Blue”</strong> is the only column in this paper filed from underwater. He has written about the clarity of the water in February, the harvest on the rocks, the discipline of a single breath. It is the rarest thing a local paper can hand a reader: a chance to see a part of their town not often seen. Colleen Connor works the opposite rhythm. <strong>“Colleen’s Garden”</strong> follows the calendar of a cottage garden she has kept for years — seeds in the cold months, then the bunnies, then roses giving way to daylilies — and it is the most practical thing we publish: readers go outside and do what it says.</p>
   <p>Theresa Myung Hee Milewski spent a career as a software engineer and runs All Computers Great and Small. <strong>“Computers 101”</strong> is what that experience sounds like aimed at a neighbor instead of a help desk: where the file actually went, who is backing up the backups, why “Allow notifications” is the most dangerous button on the internet. Katie Ring, pictured on <a href="#newsroom">the previous page</a>, shoots this town and then sits down at its tables. <strong>“Marblehead Morsels”</strong> pairs her own pictures with first-person reporting from the meal — the Driftwood, Le Petit Comptoir, a straight-faced case for eating local.</p>
@@ -606,14 +697,16 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
     <div class="stat"><span class="n">939</span><span class="bar"></span><span class="c">Free weekly newsletter subscribers, up from 275 at launch</span></div>
     <div class="stat"><span class="n">3,070</span><span class="bar"></span><span class="c">Facebook followers on Sept. 14, 2026, up from 1,020 last Dec. 31</span></div>
   </div>
+  <div class="tablescroll" role="region" aria-label="Reach by channel" tabindex="0">
   <table>
-    <tr><th>Channel</th><th>Measure</th><th class="num">Figure</th></tr>
-    <tr><td>Website</td><td>Page views</td><td class="num">606,445</td></tr>
-    <tr><td>Facebook</td><td>Views / viewers</td><td class="num">4,005,573 / 360,167</td></tr>
-    <tr><td>Weekly newsletter</td><td>Open rate</td><td class="num">72.5 percent</td></tr>
-  </table>
+      <tr><th>Channel</th><th>Measure</th><th class="num">Figure</th></tr>
+      <tr><td>Website</td><td>Page views</td><td class="num">606,445</td></tr>
+      <tr><td>Facebook</td><td>Views / viewers</td><td class="num">4,005,573 / 360,167</td></tr>
+      <tr><td>Weekly newsletter</td><td>Open rate</td><td class="num">72.5 percent</td></tr>
+    </table>
+  </div>
   <figure class="wide">
-    <img src="photos/p15-family-harbor.jpg" width="980" height="282" alt="A family sits on a bench overlooking the harbor on a summer evening." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p15-family-harbor-480.webp 480w, photos/m/p15-family-harbor-960.webp 960w" sizes="100vw"><img src="photos/p15-family-harbor.jpg" width="980" height="282" alt="A family sits on a bench overlooking the harbor on a summer evening." loading="lazy" decoding="async"></picture>
     <figcaption>A family keeps its own watch over the harbor on a summer evening. Twenty thousand people live within a mile of this bench, and the reporting is for all of them. <span class="credit">Independent photo / Steve Rood</span></figcaption>
   </figure>
   <h3>The town itself</h3>
@@ -624,6 +717,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
     <div>
       <h3>Get the Independent in your inbox, free</h3>
       <p>Scan the code or visit <a href="https://newsletter.marbleheadindependent.com/subscription/form"><strong>newsletter.marbleheadindependent.com/subscription/form</strong></a> to sign up. Already a subscriber? Forward it to someone who cares about Marblehead.</p>
+      <p class="mcta"><a href="https://newsletter.marbleheadindependent.com/subscription/form">Get the Independent free</a></p>
     </div>
   </div>
 </section>
@@ -638,22 +732,26 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
     <div class="stat"><span class="n">$22,074</span><span class="bar"></span><span class="c">Given by members, the only money that renews on its own</span></div>
     <div class="stat"><span class="n">119</span><span class="bar"></span><span class="c">People who are members today, one year in</span></div>
   </div>
+  <div class="tablescroll" role="region" aria-label="Where the money came from" tabindex="0">
   <table>
-    <tr><th>Where it came from</th><th class="num">Amount</th></tr>
-    <tr><td>Members*</td><td class="num">$22,074</td></tr>
-    <tr><td>The Founders’ Circle</td><td class="num">$25,021</td></tr>
-    <tr><td>Business sponsors</td><td class="num">$3,575</td></tr>
-    <tr><td>Other one-time gifts</td><td class="num">$340</td></tr>
-    <tr class="total"><td>Total raised</td><td class="num">$51,010</td></tr>
-  </table>
+      <tr><th>Where it came from</th><th class="num">Amount</th></tr>
+      <tr><td>Members*</td><td class="num">$22,074</td></tr>
+      <tr><td>The Founders’ Circle</td><td class="num">$25,021</td></tr>
+      <tr><td>Business sponsors</td><td class="num">$3,575</td></tr>
+      <tr><td>Other one-time gifts</td><td class="num">$340</td></tr>
+      <tr class="total"><td>Total raised</td><td class="num">$51,010</td></tr>
+    </table>
+  </div>
+  <div class="tablescroll" role="region" aria-label="Where the money went" tabindex="0">
   <table>
-    <tr><th>Where it went</th><th class="num">Amount</th></tr>
-    <tr><td>Editor’s pay, including self-employment tax&dagger;</td><td class="num">$29,637</td></tr>
-    <tr><td>Operating costs, insurance and technology</td><td class="num">$10,751</td></tr>
-    <tr><td>Contributors and photographers</td><td class="num">$5,050</td></tr>
-    <tr><td>Held in reserve</td><td class="num">$5,572</td></tr>
-    <tr class="total"><td>Total</td><td class="num">$51,010</td></tr>
-  </table>
+      <tr><th>Where it went</th><th class="num">Amount</th></tr>
+      <tr><td>Editor’s pay, including self-employment tax&dagger;</td><td class="num">$29,637</td></tr>
+      <tr><td>Operating costs, insurance and technology</td><td class="num">$10,751</td></tr>
+      <tr><td>Contributors and photographers</td><td class="num">$5,050</td></tr>
+      <tr><td>Held in reserve</td><td class="num">$5,572</td></tr>
+      <tr class="total"><td>Total</td><td class="num">$51,010</td></tr>
+    </table>
+  </div>
   <p class="fn">*Members give a set amount every month or every year by card, and theirs is the only line that renews on its own. The Founders’ Circle gave one-time gifts of $100 or more and is named on <a href="#founders">page 17</a>. Business sponsors are the local businesses on <a href="#sponsors">page 18</a>. Other one-time gifts are under $100. Of the $51,010, $37,360 arrived by card and the other $13,650 by check.</p>
   <p class="fn">&dagger;A year of full-time work, about 40 hours a week. It is what was left after the bills, the contributors and the reserve, and the line closes with the reconciliation on Oct. 31.</p>
   <h3>Today 119 people give.</h3>
@@ -722,7 +820,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 <!-- ================================================== page 19 -->
 <section class="page help" id="help">
   <figure class="wide">
-    <img src="photos/p19-franklin-street-firehouse.jpg" width="980" height="552" alt="Firefighters and a neighbor with their dogs shelter from rain in an open firehouse engine bay." loading="lazy" decoding="async">
+    <picture><source media="(max-width:760px)" type="image/webp" srcset="photos/m/p19-franklin-street-firehouse-480.webp 480w, photos/m/p19-franklin-street-firehouse-960.webp 960w" sizes="100vw"><img src="photos/p19-franklin-street-firehouse.jpg" width="980" height="552" alt="Firefighters and a neighbor with their dogs shelter from rain in an open firehouse engine bay." loading="lazy" decoding="async"></picture>
     <figcaption>The Franklin Street firehouse offers shelter from a downpour on Aug. 3 in an open engine bay, dogs included. <span class="credit">Independent photo / Steve Rood</span></figcaption>
   </figure>
   <p class="kicker">How to help</p>
@@ -738,6 +836,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
     <a href="https://marbleheadindependent.com/ways-to-support"><img src="photos/qr-ways-to-support.png" width="330" height="330" alt="QR code for marbleheadindependent.com/ways-to-support" loading="lazy" decoding="async"></a>
     <div>
       <p class="url"><a href="https://marbleheadindependent.com/ways-to-support" style="color:inherit;text-decoration:none">marbleheadindependent.com/ways-to-support</a></p>
+      <p class="mcta"><a href="https://marbleheadindependent.com/ways-to-support">Support the Independent</a></p>
       <p>Or make a check out to The Marblehead Independent and send it to Suite 306, 74 Atlantic Ave., Marblehead, Massachusetts 01945. <a href="mailto:wdowd@marbleheadindependent.com">wdowd@marbleheadindependent.com</a> · 781-910-8658</p>
     </div>
   </div>
@@ -764,9 +863,32 @@ footer a{color:var(--muted);text-decoration:none;margin-right:1.4em}
 
 <script>
 document.getElementById('copylink').addEventListener('click', function(){
-  var b=this; navigator.clipboard.writeText(b.dataset.url).then(function(){
-    var t=b.textContent; b.textContent='Copied'; setTimeout(function(){b.textContent=t;},1800);
-  });
+  var b = this, url = b.dataset.url;
+  function done(){
+    var t = b.textContent;
+    b.textContent = 'Copied';
+    setTimeout(function(){ b.textContent = t; }, 1800);
+  }
+  // execCommand path for browsers with no clipboard API, and for insecure contexts
+  function fallback(){
+    var f = document.createElement('textarea');
+    f.value = url;
+    f.setAttribute('readonly', '');
+    f.style.cssText = 'position:absolute;left:-9999px;top:0';
+    document.body.appendChild(f);
+    f.select();
+    f.setSelectionRange(0, url.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(f);
+    if (ok) done();
+    else window.prompt('Copy this link:', url);
+  }
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(url).then(done, fallback);
+  } else {
+    fallback();
+  }
 });
 </script>
 
@@ -812,6 +934,20 @@ document.getElementById('copylink').addEventListener('click', function(){
   window.addEventListener('scroll', queue, {passive:true});
   window.addEventListener('resize', queue, {passive:true});
   update();
+})();
+</script>
+
+<script>
+/* ---------- mobile reading experience: keep anchor targets clear of the sticky bar ---------- */
+(function(){
+  var bar = document.querySelector('.topbar');
+  if (!bar) return;
+  function measure(){
+    document.documentElement.style.setProperty('--navh', bar.offsetHeight + 'px');
+  }
+  measure();
+  window.addEventListener('resize', measure, {passive:true});
+  if (window.ResizeObserver) new ResizeObserver(measure).observe(bar);
 })();
 </script>
 
